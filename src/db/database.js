@@ -91,9 +91,11 @@ export const createSession = async () => {
 };
 
 export const updateSession = async (id, updates) => {
+  console.log('💾 Updating session:', id, updates);
   await db.sessions.update(id, updates);
   
   const session = await db.sessions.get(id);
+  console.log('📤 Syncing to cloud:', session);
   if (session) {
     await syncSessionToCloud(session);
   }

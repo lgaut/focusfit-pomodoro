@@ -196,6 +196,13 @@ export const useTimerStore = create((set, get) => ({
       ? currentActivity.block.total_duration_seconds
       : settings.break_minutes * 60;
 
+    console.log('🏋️ Completing break:', {
+      currentActivity,
+      breakSeconds,
+      oldSportSeconds: sessionStats.sport_total_seconds,
+      newSportSeconds: sessionStats.sport_total_seconds + breakSeconds
+    });
+
     const newStats = {
       ...sessionStats,
       sport_total_seconds: sessionStats.sport_total_seconds + breakSeconds,
@@ -204,6 +211,7 @@ export const useTimerStore = create((set, get) => ({
       cycles_completed: sessionStats.cycles_completed + 1
     };
 
+    console.log('📊 New stats:', newStats);
     await updateSession(sessionId, newStats);
     await addCycleLog(sessionId, {
       activity_type: currentActivity.type,
