@@ -6,6 +6,7 @@ import { Stats } from './components/Stats';
 import { Settings } from './components/Settings';
 import { useTimerStore } from './store/useTimerStore';
 import { initializeSettings } from './db/database';
+import { notificationManager } from './utils/notificationManager';
 
 function App() {
   const [currentView, setCurrentView] = useState('timer');

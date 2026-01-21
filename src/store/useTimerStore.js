@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { db, getTodaySession, createSession, updateSession, addCycleLog } from '../db/database';
 import { RotationManager } from '../utils/rotation';
 import { soundManager } from '../utils/soundManager';
+import { notificationManager } from '../utils/notificationManager';
 
 const TIMER_STATES = {
   IDLE: 'idle',
@@ -89,6 +90,9 @@ export const useTimerStore = create((set, get) => ({
       soundManager.playBeep(600, 100);
     }
 
+    // Démarrer les notifications persistantes
+    notificationManager.startTimerNotifications(() => get());
+
     if ('Notification' in window && Notification.permission === 'granted') {
       new Notification('Focus démarré', {
         body: `Session de ${settings.focus_minutes} minutes`,
@@ -167,6 +171,9 @@ export const useTimerStore = create((set, get) => ({
       timeRemaining: totalSeconds,
       totalTime: totalSeconds
     });
+
+    // Démarrer les notifications persistantes
+    notificationManager.startTimerNotifications(() => get());
   },
 
   nextExerciseOrComplete: () => {
@@ -246,6 +253,9 @@ export const useTimerStore = create((set, get) => ({
       currentActivity: null,
       currentExerciseIndex: 0
     });
+
+    // Arrêter les notifications persistantes
+    notificationManager.stopTimerNotifications();
 
     if (settings.sound_enabled) {
       soundManager.playNotificationSound();
@@ -335,6 +345,9 @@ export const useTimerStore = create((set, get) => ({
   reset: () => {
     const worker = initWorker();
     worker.postMessage({ type: 'STOP' });
+    
+    // Arrêter les notifications persistantes
+    notificationManager.stopTimerNotifications();
     
     set({
       state: TIMER_STATES.IDLE,
