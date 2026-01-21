@@ -24,8 +24,8 @@ export const Stats = () => {
   const streak = calculateStreak(stats);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50 pb-20">
-      <div className="p-4 space-y-4">
+    <div className="h-screen bg-gradient-to-br from-indigo-50 to-purple-50 overflow-hidden">
+      <div className="h-full p-4 pb-20 space-y-4 overflow-y-auto">
         <div className="flex items-center gap-2 mb-2">
           <BarChart3 className="w-6 h-6 text-indigo-600" />
           <h1 className="text-xl font-bold text-gray-800">Statistiques</h1>

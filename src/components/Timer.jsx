@@ -28,8 +28,8 @@ export const Timer = () => {
   const isIdle = state === 'idle';
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50">
-      <div className="flex-1 flex flex-col p-4 pb-20">
+    <div className="flex flex-col h-screen bg-gradient-to-br from-indigo-50 to-purple-50 overflow-hidden">
+      <div className="flex-1 flex flex-col p-4 pb-20 overflow-y-auto">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
             <TimerIcon className="w-5 h-5 text-indigo-600" />

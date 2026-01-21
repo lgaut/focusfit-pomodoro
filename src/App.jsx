@@ -26,7 +26,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen pb-16">
+    <div className="min-h-screen">
       {currentActivity && currentView === 'timer' ? (
         <BreakScreen />
       ) : (
