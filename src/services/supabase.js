@@ -7,17 +7,7 @@ let supabase = null;
 
 export const initSupabase = () => {
   if (!supabase && supabaseUrl !== 'VOTRE_SUPABASE_URL') {
-    supabase = createClient(supabaseUrl, supabaseKey, {
-      db: {
-        schema: 'public'
-      },
-      global: {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-      }
-    });
+    supabase = createClient(supabaseUrl, supabaseKey);
   }
   return supabase;
 };
