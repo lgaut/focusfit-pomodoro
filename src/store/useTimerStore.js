@@ -304,46 +304,44 @@ export const useTimerStore = create((set, get) => ({
   },
 
   pause: () => {
-    const { intervalId } = get();
-    if (intervalId) clearInterval(intervalId);
-    set({ state: TIMER_STATES.PAUSED });
+    const worker = initWorker();
+    worker.postMessage({ type: 'PAUSE' });
+    set({ state: TIMER_STATES.PAUSED, previousState: get().state });
   },
 
   resume: () => {
-    const { state, timeRemaining } = get();
-    if (state !== TIMER_STATES.PAUSED) return;
+    const { timeRemaining, previousState } = get();
+    const worker = initWorker();
     
-    const previousState = timeRemaining > 300 ? TIMER_STATES.FOCUS : TIMER_STATES.BREAK;
-    
-    const id = setInterval(() => {
-      const { timeRemaining, state } = get();
-      if (state === TIMER_STATES.PAUSED) return;
+    worker.onmessage = (e) => {
+      const { type, remaining } = e.data;
       
-      if (timeRemaining <= 1) {
-        if (state === TIMER_STATES.FOCUS) {
+      if (type === 'TICK') {
+        set({ timeRemaining: remaining });
+      } else if (type === 'COMPLETE') {
+        if (previousState === TIMER_STATES.FOCUS) {
           get().completeFocus();
         } else {
           get().nextExerciseOrComplete();
         }
-      } else {
-        set({ timeRemaining: timeRemaining - 1 });
       }
-    }, 1000);
+    };
+    
+    worker.postMessage({ type: 'RESUME', duration: timeRemaining });
 
-    set({ state: previousState, intervalId: id });
+    set({ state: previousState, previousState: null });
   },
 
   reset: () => {
-    const { intervalId } = get();
-    if (intervalId) clearInterval(intervalId);
+    const worker = initWorker();
+    worker.postMessage({ type: 'STOP' });
     
     set({
       state: TIMER_STATES.IDLE,
       timeRemaining: 0,
       totalTime: 0,
       currentActivity: null,
-      currentExerciseIndex: 0,
-      intervalId: null
+      currentExerciseIndex: 0
     });
   }
 }));
