@@ -35,17 +35,16 @@ export const Settings = ({ onSave }) => {
   if (!settings) return null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50 p-4">
-      <div className="max-w-2xl mx-auto">
-        <div className="bg-white rounded-3xl shadow-2xl p-8">
-          <div className="flex items-center gap-3 mb-8">
-            <SettingsIcon className="w-8 h-8 text-indigo-600" />
-            <h1 className="text-3xl font-bold text-gray-800">Paramètres</h1>
-          </div>
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50 pb-20">
+      <div className="p-4 space-y-4">
+        <div className="flex items-center gap-2 mb-2">
+          <SettingsIcon className="w-6 h-6 text-indigo-600" />
+          <h1 className="text-xl font-bold text-gray-800">Paramètres</h1>
+        </div>
 
-          <UserIdDisplay />
+        <UserIdDisplay />
 
-          <div className="space-y-6">
+        <div className="space-y-4">
             <Section title="⏱️ Durées">
               <InputField
                 label="Focus (minutes)"
@@ -120,7 +119,7 @@ export const Settings = ({ onSave }) => {
 
           <button
             onClick={handleSave}
-            className="w-full mt-8 flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all shadow-lg"
+            className="w-full mt-4 flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl font-semibold hover:from-indigo-700 hover:to-purple-700 active:scale-95 transition-all shadow-lg"
           >
             <Save className="w-5 h-5" />
             Enregistrer
@@ -132,9 +131,9 @@ export const Settings = ({ onSave }) => {
 };
 
 const Section = ({ title, children }) => (
-  <div className="border-b border-gray-200 pb-6">
-    <h2 className="text-lg font-bold text-gray-800 mb-4">{title}</h2>
-    <div className="space-y-4">
+  <div className="bg-white rounded-2xl p-4 shadow-md">
+    <h2 className="text-sm font-bold text-gray-600 mb-3 uppercase tracking-wide">{title}</h2>
+    <div className="space-y-3">
       {children}
     </div>
   </div>
@@ -142,7 +141,7 @@ const Section = ({ title, children }) => (
 
 const InputField = ({ label, type, value, onChange, min, max }) => (
   <div>
-    <label className="block text-sm font-semibold text-gray-700 mb-2">
+    <label className="block text-xs font-semibold text-gray-600 mb-1.5">
       {label}
     </label>
     <input
@@ -151,13 +150,13 @@ const InputField = ({ label, type, value, onChange, min, max }) => (
       onChange={(e) => onChange(e.target.value)}
       min={min}
       max={max}
-      className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-indigo-500 focus:outline-none transition-colors"
+      className="w-full px-3 py-2 bg-gray-50 border-2 border-gray-200 rounded-lg focus:border-indigo-500 focus:outline-none transition-colors text-base"
     />
   </div>
 );
 
 const CheckboxField = ({ label, checked, onChange }) => (
-  <label className="flex items-center gap-3 cursor-pointer group">
+  <label className="flex items-center gap-3 cursor-pointer group py-1">
     <div className="relative">
       <input
         type="checkbox"
@@ -165,18 +164,18 @@ const CheckboxField = ({ label, checked, onChange }) => (
         onChange={(e) => onChange(e.target.checked)}
         className="sr-only"
       />
-      <div className={`w-6 h-6 rounded-lg border-2 transition-all ${
+      <div className={`w-5 h-5 rounded-md border-2 transition-all ${
         checked
           ? 'bg-indigo-600 border-indigo-600'
           : 'bg-white border-gray-300 group-hover:border-indigo-400'
       }`}>
         {checked && (
-          <svg className="w-full h-full text-white p-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-full h-full text-white p-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
           </svg>
         )}
       </div>
     </div>
-    <span className="text-gray-700 font-medium">{label}</span>
+    <span className="text-gray-700 font-medium text-sm">{label}</span>
   </label>
 );

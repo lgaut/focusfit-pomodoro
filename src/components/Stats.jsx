@@ -24,23 +24,22 @@ export const Stats = () => {
   const streak = calculateStreak(stats);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50 p-4">
-      <div className="max-w-4xl mx-auto">
-        <div className="bg-white rounded-3xl shadow-2xl p-8 mb-6">
-          <div className="flex items-center gap-3 mb-6">
-            <BarChart3 className="w-8 h-8 text-indigo-600" />
-            <h1 className="text-3xl font-bold text-gray-800">Statistiques</h1>
-          </div>
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50 pb-20">
+      <div className="p-4 space-y-4">
+        <div className="flex items-center gap-2 mb-2">
+          <BarChart3 className="w-6 h-6 text-indigo-600" />
+          <h1 className="text-xl font-bold text-gray-800">Statistiques</h1>
+        </div>
 
-          <div className="flex gap-2 mb-6">
+        <div className="flex gap-2">
             {[7, 14, 30].map((days) => (
               <button
                 key={days}
                 onClick={() => setPeriod(days)}
-                className={`px-4 py-2 rounded-lg font-semibold transition-colors ${
+                className={`flex-1 py-2 rounded-lg font-semibold transition-all active:scale-95 ${
                   period === days
-                    ? 'bg-indigo-600 text-white'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    ? 'bg-indigo-600 text-white shadow-md'
+                    : 'bg-white text-gray-700 hover:bg-gray-50'
                 }`}
               >
                 {days}j
@@ -48,7 +47,7 @@ export const Stats = () => {
             ))}
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <div className="grid grid-cols-2 gap-3 mb-4">
             <StatCard
               icon={<TrendingUp className="w-6 h-6" />}
               value={totalFocusMinutes}
@@ -75,53 +74,52 @@ export const Stats = () => {
             />
           </div>
 
-          <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-6">
-            <h3 className="text-lg font-bold text-gray-800 mb-4">Moyenne par jour</h3>
+          <div className="bg-white rounded-2xl p-4 shadow-md">
+            <h3 className="text-sm font-bold text-gray-600 mb-3 uppercase tracking-wide">Moyenne par jour</h3>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <div className="text-3xl font-bold text-indigo-600">{avgFocusPerDay}</div>
-                <div className="text-sm text-gray-600">min focus/jour</div>
+                <div className="text-2xl font-bold text-indigo-600">{avgFocusPerDay}</div>
+                <div className="text-xs text-gray-500">min focus/jour</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-emerald-600">{totalSportMinutes}</div>
-                <div className="text-sm text-gray-600">min sport total</div>
+                <div className="text-2xl font-bold text-emerald-600">{totalSportMinutes}</div>
+                <div className="text-xs text-gray-500">min sport total</div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="bg-white rounded-3xl shadow-2xl p-8">
-          <h2 className="text-xl font-bold text-gray-800 mb-4">Historique</h2>
-          <div className="space-y-3">
+        <div className="bg-white rounded-2xl p-4 shadow-md">
+          <h2 className="text-sm font-bold text-gray-600 mb-3 uppercase tracking-wide">Historique</h2>
+          <div className="space-y-2">
             {stats.slice(0, 10).reverse().map((session) => (
               <div
                 key={session.id}
-                className="flex items-center justify-between p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors"
+                className="flex items-center justify-between p-3 bg-gray-50 rounded-xl active:bg-gray-100 transition-colors"
               >
-                <div>
-                  <div className="font-semibold text-gray-800">
+                <div className="flex-1 min-w-0">
+                  <div className="font-semibold text-sm text-gray-800 truncate">
                     {new Date(session.date).toLocaleDateString('fr-FR', {
-                      weekday: 'long',
+                      weekday: 'short',
                       day: 'numeric',
-                      month: 'long'
+                      month: 'short'
                     })}
                   </div>
-                  <div className="text-sm text-gray-600">
+                  <div className="text-xs text-gray-500">
                     {session.cycles_completed} cycles
                   </div>
                 </div>
-                <div className="flex gap-4 text-sm">
+                <div className="flex gap-3 text-xs">
                   <div className="text-right">
                     <div className="font-bold text-indigo-600">
                       {Math.floor(session.focus_total_seconds / 60)}m
                     </div>
-                    <div className="text-gray-600">focus</div>
+                    <div className="text-gray-500">focus</div>
                   </div>
                   <div className="text-right">
                     <div className="font-bold text-emerald-600">
                       {session.breaks_done}
                     </div>
-                    <div className="text-gray-600">pauses</div>
+                    <div className="text-gray-500">pauses</div>
                   </div>
                 </div>
               </div>
@@ -142,12 +140,12 @@ const StatCard = ({ icon, value, label, color }) => {
   };
 
   return (
-    <div className="bg-white border-2 border-gray-100 rounded-2xl p-4">
-      <div className={`w-12 h-12 rounded-xl ${colorClasses[color]} flex items-center justify-center mb-3`}>
+    <div className="bg-white rounded-2xl p-3 shadow-md">
+      <div className={`w-10 h-10 rounded-lg ${colorClasses[color]} flex items-center justify-center mb-2`}>
         {icon}
       </div>
-      <div className="text-3xl font-bold text-gray-800 mb-1">{value}</div>
-      <div className="text-sm text-gray-600">{label}</div>
+      <div className="text-2xl font-bold text-gray-800 mb-0.5">{value}</div>
+      <div className="text-xs text-gray-500 font-medium">{label}</div>
     </div>
   );
 };
