@@ -141,7 +141,7 @@ export const BreakScreen = () => {
       </div>
 
       {/* Boutons alignés en bas */}
-      <div className="p-4 pb-20 bg-gradient-to-br from-emerald-50 to-teal-50">
+      <div className="p-4 pb-24 bg-gradient-to-br from-emerald-50 to-teal-50">
         {!isBreakActive ? (
           <div className="space-y-2">
             <button
