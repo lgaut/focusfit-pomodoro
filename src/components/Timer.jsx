@@ -29,7 +29,7 @@ export const Timer = () => {
 
   return (
     <div className="flex flex-col h-screen bg-gradient-to-br from-indigo-50 to-purple-50 overflow-hidden">
-      <div className="flex-1 flex flex-col p-4 pb-20 overflow-y-auto">
+      <div className="flex-1 flex flex-col p-4 overflow-y-auto">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
             <TimerIcon className="w-5 h-5 text-indigo-600" />
@@ -77,7 +77,31 @@ export const Timer = () => {
           </div>
         </div>
 
-        <div className="flex gap-2 justify-center mb-4">
+        <div className="grid grid-cols-3 gap-3 bg-white rounded-2xl p-4 shadow-lg">
+          <div className="text-center">
+            <div className="text-xl font-bold text-indigo-600">
+              {Math.floor(sessionStats.focus_total_seconds / 60)}
+            </div>
+            <div className="text-xs text-gray-500 font-medium">min focus</div>
+          </div>
+          <div className="text-center border-x border-gray-200">
+            <div className="text-xl font-bold text-emerald-600">
+              {sessionStats.breaks_done}
+            </div>
+            <div className="text-xs text-gray-500 font-medium">pauses</div>
+          </div>
+          <div className="text-center">
+            <div className="text-xl font-bold text-purple-600">
+              {sessionStats.abs_breaks_done}/2
+            </div>
+            <div className="text-xs text-gray-500 font-medium">abdos</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Boutons alignés en bas */}
+      <div className="p-4 pb-20 bg-gradient-to-br from-indigo-50 to-purple-50">
+        <div className="flex gap-2 justify-center">
           {isIdle && (
             <button
               onClick={startFocus}
@@ -116,27 +140,6 @@ export const Timer = () => {
               <RotateCcw className="w-5 h-5" />
             </button>
           )}
-        </div>
-
-        <div className="grid grid-cols-3 gap-3 mt-auto bg-white rounded-2xl p-4 shadow-lg">
-          <div className="text-center">
-            <div className="text-xl font-bold text-indigo-600">
-              {Math.floor(sessionStats.focus_total_seconds / 60)}
-            </div>
-            <div className="text-xs text-gray-500 font-medium">min focus</div>
-          </div>
-          <div className="text-center border-x border-gray-200">
-            <div className="text-xl font-bold text-emerald-600">
-              {sessionStats.breaks_done}
-            </div>
-            <div className="text-xs text-gray-500 font-medium">pauses</div>
-          </div>
-          <div className="text-center">
-            <div className="text-xl font-bold text-purple-600">
-              {sessionStats.abs_breaks_done}/2
-            </div>
-            <div className="text-xs text-gray-500 font-medium">abdos</div>
-          </div>
         </div>
       </div>
     </div>

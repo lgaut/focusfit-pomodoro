@@ -58,7 +58,7 @@ export const BreakScreen = () => {
 
   return (
     <div className="flex flex-col h-screen bg-gradient-to-br from-emerald-50 to-teal-50 overflow-hidden">
-      <div className="flex-1 flex flex-col p-4 pb-20 overflow-y-auto">
+      <div className="flex-1 flex flex-col p-4 overflow-y-auto">
         <div className={`w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br ${categoryColor} flex items-center justify-center text-3xl shadow-lg`}>
           {categoryIcon}
         </div>
@@ -94,6 +94,26 @@ export const BreakScreen = () => {
           )}
         </div>
 
+        {isBlock && currentActivity.exercises.length > 1 && (
+          <div className="mt-4 flex gap-1 justify-center">
+            {currentActivity.exercises.map((_, idx) => (
+              <div
+                key={idx}
+                className={`h-1.5 flex-1 rounded-full transition-colors ${
+                  idx < currentExerciseIndex
+                    ? 'bg-emerald-500'
+                    : idx === currentExerciseIndex
+                    ? 'bg-emerald-400'
+                    : 'bg-gray-200'
+                }`}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Boutons alignés en bas */}
+      <div className="p-4 pb-20 bg-gradient-to-br from-emerald-50 to-teal-50">
         {!isBreakActive ? (
           <div className="space-y-2">
             <button
@@ -139,23 +159,6 @@ export const BreakScreen = () => {
               <X className="w-4 h-4" />
               Abandonner
             </button>
-          </div>
-        )}
-
-        {isBlock && currentActivity.exercises.length > 1 && (
-          <div className="mt-4 flex gap-1 justify-center">
-            {currentActivity.exercises.map((_, idx) => (
-              <div
-                key={idx}
-                className={`h-1.5 flex-1 rounded-full transition-colors ${
-                  idx < currentExerciseIndex
-                    ? 'bg-emerald-500'
-                    : idx === currentExerciseIndex
-                    ? 'bg-emerald-400'
-                    : 'bg-gray-200'
-                }`}
-              />
-            ))}
           </div>
         )}
       </div>
