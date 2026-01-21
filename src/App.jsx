@@ -15,10 +15,6 @@ function App() {
     const init = async () => {
       const settings = await initializeSettings();
       await initialize(settings);
-      
-      if ('Notification' in window && Notification.permission === 'default') {
-        Notification.requestPermission();
-      }
     };
     
     init();

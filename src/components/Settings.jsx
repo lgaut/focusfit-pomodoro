@@ -21,7 +21,13 @@ export const Settings = ({ onSave }) => {
     
     if (settings.notifications_enabled && 'Notification' in window) {
       if (Notification.permission === 'default') {
-        await Notification.requestPermission();
+        const permission = await Notification.requestPermission();
+        if (permission === 'granted') {
+          new Notification('FocusFit Pomodoro', {
+            body: 'Notifications activées ! Tu seras averti à la fin de chaque session.',
+            icon: '/focusfit-pomodoro/pwa-192x192.png'
+          });
+        }
       }
     }
   };
