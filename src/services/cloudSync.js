@@ -16,24 +16,28 @@ export const syncSessionToCloud = async (sessionData) => {
   const userId = getUserId();
   const today = new Date().toISOString().split('T')[0];
 
-  const { error } = await client
-    .from('user_sessions')
-    .upsert({
-      user_id: userId,
-      date: today,
-      cycles_completed: sessionData.cycles_completed,
-      focus_total_seconds: sessionData.focus_total_seconds,
-      sport_total_seconds: sessionData.sport_total_seconds,
-      breaks_done: sessionData.breaks_done,
-      breaks_skipped: sessionData.breaks_skipped,
-      abs_breaks_done: sessionData.abs_breaks_done,
-      updated_at: new Date().toISOString()
-    }, {
-      onConflict: 'user_id,date'
-    });
+  try {
+    const { error } = await client
+      .from('user_sessions')
+      .upsert({
+        user_id: userId,
+        date: today,
+        cycles_completed: sessionData.cycles_completed,
+        focus_total_seconds: sessionData.focus_total_seconds,
+        sport_total_seconds: sessionData.sport_total_seconds,
+        breaks_done: sessionData.breaks_done,
+        breaks_skipped: sessionData.breaks_skipped,
+        abs_breaks_done: sessionData.abs_breaks_done,
+        updated_at: new Date().toISOString()
+      }, {
+        onConflict: 'user_id,date'
+      });
 
-  if (error) {
-    console.error('Error syncing to cloud:', error);
+    if (error) {
+      console.warn('Supabase sync failed. Data saved locally only.');
+    }
+  } catch (err) {
+    console.warn('Supabase sync disabled. Using local storage only.');
   }
 };
 
@@ -44,19 +48,24 @@ export const loadSessionFromCloud = async (date) => {
   const userId = getUserId();
   const dateStr = date || new Date().toISOString().split('T')[0];
 
-  const { data, error } = await client
-    .from('user_sessions')
-    .select('*')
-    .eq('user_id', userId)
-    .eq('date', dateStr)
-    .single();
+  try {
+    const { data, error } = await client
+      .from('user_sessions')
+      .select('*')
+      .eq('user_id', userId)
+      .eq('date', dateStr)
+      .single();
 
-  if (error && error.code !== 'PGRST116') {
-    console.error('Error loading from cloud:', error);
+    if (error && error.code !== 'PGRST116') {
+      console.warn('Supabase not configured or table missing. Using local storage only.');
+      return null;
+    }
+
+    return data;
+  } catch (err) {
+    console.warn('Supabase sync disabled. Using local storage only.');
     return null;
   }
-
-  return data;
 };
 
 export const loadRecentSessions = async (days = 30) => {
@@ -68,19 +77,24 @@ export const loadRecentSessions = async (days = 30) => {
   startDate.setDate(startDate.getDate() - days);
   const startDateStr = startDate.toISOString().split('T')[0];
 
-  const { data, error } = await client
-    .from('user_sessions')
-    .select('*')
-    .eq('user_id', userId)
-    .gte('date', startDateStr)
-    .order('date', { ascending: false });
+  try {
+    const { data, error } = await client
+      .from('user_sessions')
+      .select('*')
+      .eq('user_id', userId)
+      .gte('date', startDateStr)
+      .order('date', { ascending: false });
 
-  if (error) {
-    console.error('Error loading recent sessions:', error);
+    if (error) {
+      console.warn('Supabase not configured. Using local storage only.');
+      return [];
+    }
+
+    return data || [];
+  } catch (err) {
+    console.warn('Supabase sync disabled. Using local storage only.');
     return [];
   }
-
-  return data || [];
 };
 
 export const getUserIdForSharing = () => {
