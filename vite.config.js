@@ -17,8 +17,8 @@ export default defineConfig({
         background_color: '#ffffff',
         display: 'standalone',
         orientation: 'portrait',
-        scope: '/',
-        start_url: '/',
+        scope: '/focusfit-pomodoro/',
+        start_url: '/focusfit-pomodoro/',
         icons: [
           {
             src: 'pwa-192x192.png',
