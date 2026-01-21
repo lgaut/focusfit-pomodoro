@@ -7,7 +7,11 @@ let supabase = null;
 
 export const initSupabase = () => {
   if (!supabase && supabaseUrl !== 'VOTRE_SUPABASE_URL') {
-    supabase = createClient(supabaseUrl, supabaseKey);
+    supabase = createClient(supabaseUrl, supabaseKey, {
+      auth: {
+        persistSession: false
+      }
+    });
   }
   return supabase;
 };

@@ -54,7 +54,7 @@ export const loadSessionFromCloud = async (date) => {
       .select('*')
       .eq('user_id', userId)
       .eq('date', dateStr)
-      .single();
+      .maybeSingle();
 
     if (error && error.code !== 'PGRST116') {
       console.warn('Supabase not configured or table missing. Using local storage only.');
