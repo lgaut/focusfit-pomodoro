@@ -117,14 +117,13 @@ export const Settings = ({ onSave }) => {
             </Section>
           </div>
 
-          <button
-            onClick={handleSave}
-            className="w-full mt-4 flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl font-semibold hover:from-indigo-700 hover:to-purple-700 active:scale-95 transition-all shadow-lg"
-          >
-            <Save className="w-5 h-5" />
-            Enregistrer
-          </button>
-        </div>
+        <button
+          onClick={handleSave}
+          className="w-full mt-4 flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl font-semibold hover:from-indigo-700 hover:to-purple-700 active:scale-95 transition-all shadow-lg"
+        >
+          <Save className="w-5 h-5" />
+          Enregistrer
+        </button>
       </div>
     </div>
   );
