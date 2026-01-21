@@ -7,6 +7,7 @@ import { Settings } from './components/Settings';
 import { useTimerStore } from './store/useTimerStore';
 import { initializeSettings } from './db/database';
 import { notificationManager } from './utils/notificationManager';
+import { requestWakeLock, releaseWakeLock } from './utils/wakeLock';
 
 function App() {
   const [currentView, setCurrentView] = useState('timer');
@@ -22,6 +23,9 @@ function App() {
   }, [initialize]);
 
   useEffect(() => {
+    // Activer le Wake Lock pour garder l'écran allumé
+    requestWakeLock();
+
     // Gérer les notifications persistantes quand l'app passe en arrière-plan
     const handleVisibilityChange = () => {
       notificationManager.handleVisibilityChange(() => useTimerStore.getState());
@@ -31,6 +35,7 @@ function App() {
 
     return () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
+      releaseWakeLock();
     };
   }, []);
 
