@@ -14,33 +14,78 @@ export const syncSessionToCloud = async (sessionData) => {
   const userId = getUserId();
   const today = new Date().toISOString().split('T')[0];
 
-  try {
-    const response = await fetch(`${SUPABASE_URL}/rest/v1/user_sessions`, {
-      method: 'POST',
-      headers: {
-        'apikey': SUPABASE_KEY,
-        'Authorization': `Bearer ${SUPABASE_KEY}`,
-        'Content-Type': 'application/json',
-        'Prefer': 'resolution=merge-duplicates'
-      },
-      body: JSON.stringify({
-        user_id: userId,
-        date: today,
-        cycles_completed: sessionData.cycles_completed,
-        focus_total_seconds: sessionData.focus_total_seconds,
-        sport_total_seconds: sessionData.sport_total_seconds,
-        breaks_done: sessionData.breaks_done,
-        breaks_skipped: sessionData.breaks_skipped,
-        abs_breaks_done: sessionData.abs_breaks_done,
-        updated_at: new Date().toISOString()
-      })
-    });
+  const payload = {
+    cycles_completed: sessionData.cycles_completed,
+    focus_total_seconds: sessionData.focus_total_seconds,
+    sport_total_seconds: sessionData.sport_total_seconds,
+    breaks_done: sessionData.breaks_done,
+    breaks_skipped: sessionData.breaks_skipped,
+    abs_breaks_done: sessionData.abs_breaks_done,
+    updated_at: new Date().toISOString()
+  };
 
-    if (!response.ok) {
-      console.warn('Supabase sync failed. Data saved locally only.');
+  console.log('☁️ Syncing to Supabase:', payload);
+
+  try {
+    // Vérifier si la session existe déjà
+    const checkResponse = await fetch(
+      `${SUPABASE_URL}/rest/v1/user_sessions?user_id=eq.${userId}&date=eq.${today}&select=id`,
+      {
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': `Bearer ${SUPABASE_KEY}`
+        }
+      }
+    );
+
+    const existing = await checkResponse.json();
+
+    if (existing && existing.length > 0) {
+      // Mise à jour avec PATCH
+      const updateResponse = await fetch(
+        `${SUPABASE_URL}/rest/v1/user_sessions?user_id=eq.${userId}&date=eq.${today}`,
+        {
+          method: 'PATCH',
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        }
+      );
+
+      if (!updateResponse.ok) {
+        const errorText = await updateResponse.text();
+        console.warn('Supabase update failed:', updateResponse.status, errorText);
+      } else {
+        console.log('✅ Supabase update successful');
+      }
+    } else {
+      // Création avec POST
+      const createResponse = await fetch(`${SUPABASE_URL}/rest/v1/user_sessions`, {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': `Bearer ${SUPABASE_KEY}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          user_id: userId,
+          date: today,
+          ...payload
+        })
+      });
+
+      if (!createResponse.ok) {
+        const errorText = await createResponse.text();
+        console.warn('Supabase create failed:', createResponse.status, errorText);
+      } else {
+        console.log('✅ Supabase create successful');
+      }
     }
   } catch (err) {
-    console.warn('Supabase sync disabled. Using local storage only.');
+    console.warn('Supabase sync error:', err);
   }
 };
 

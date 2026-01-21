@@ -112,7 +112,7 @@ export const useTimerStore = create((set, get) => ({
       
       new Notification('Pause Sport !', {
         body: `C'est l'heure de : ${activityName}`,
-        icon: '/pwa-192x192.png',
+        icon: '/focusfit-pomodoro/pwa-192x192.png',
         tag: 'break-notification',
         requireInteraction: true
       });
@@ -230,7 +230,7 @@ export const useTimerStore = create((set, get) => ({
     if ('Notification' in window && Notification.permission === 'granted') {
       new Notification('Pause terminée !', {
         body: 'Retour au focus',
-        icon: '/pwa-192x192.png'
+        icon: '/focusfit-pomodoro/pwa-192x192.png'
       });
     }
   },
