@@ -57,57 +57,57 @@ export const BreakScreen = () => {
   const categoryIcon = getCategoryIcon(currentActivity.category);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-emerald-50 to-teal-50 p-4">
-      <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl p-8">
-        <div className={`w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br ${categoryColor} flex items-center justify-center text-4xl shadow-lg`}>
+    <div className="flex flex-col h-screen bg-gradient-to-br from-emerald-50 to-teal-50 overflow-hidden">
+      <div className="flex-1 flex flex-col p-4 pb-20 overflow-y-auto">
+        <div className={`w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br ${categoryColor} flex items-center justify-center text-3xl shadow-lg`}>
           {categoryIcon}
         </div>
 
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-2">
+        <h2 className="text-2xl font-bold text-center text-gray-800 mb-3">
           Pause Sport !
         </h2>
 
         {isBlock && (
-          <div className="text-center mb-4">
-            <span className="inline-block px-4 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-semibold">
+          <div className="text-center mb-3">
+            <span className="inline-block px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-semibold">
               {currentActivity.block.name}
             </span>
-            <div className="mt-2 text-sm text-gray-600">
+            <div className="mt-1 text-xs text-gray-500">
               Exercice {currentExerciseIndex + 1}/{currentActivity.exercises.length}
             </div>
           </div>
         )}
 
-        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-6 mb-6">
-          <h3 className="text-xl font-bold text-gray-800 mb-3">
+        <div className="bg-white rounded-2xl p-4 mb-4 shadow-md">
+          <h3 className="text-lg font-bold text-gray-800 mb-2">
             {currentExercise.name}
           </h3>
-          <p className="text-gray-700 leading-relaxed">
+          <p className="text-sm text-gray-600 leading-relaxed">
             {currentExercise.instructions}
           </p>
           
           {isBreakActive && (
-            <div className="mt-4 flex items-center justify-center gap-2 text-2xl font-bold text-emerald-600">
-              <Clock className="w-6 h-6" />
+            <div className="mt-3 flex items-center justify-center gap-2 text-xl font-bold text-emerald-600">
+              <Clock className="w-5 h-5" />
               {formatTime(timeRemaining)}
             </div>
           )}
         </div>
 
         {!isBreakActive ? (
-          <div className="space-y-3">
+          <div className="space-y-2">
             <button
               onClick={startBreak}
-              className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-xl font-semibold hover:from-emerald-600 hover:to-teal-600 transition-all shadow-lg"
+              className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-xl font-semibold hover:from-emerald-600 hover:to-teal-600 active:scale-95 transition-all shadow-lg"
             >
               <Check className="w-5 h-5" />
               C'est parti !
             </button>
             
-            <div className="flex gap-3">
+            <div className="flex gap-2">
               <button
                 onClick={changeActivity}
-                className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gray-200 text-gray-700 rounded-xl font-semibold hover:bg-gray-300 transition-colors"
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-gray-200 text-gray-700 rounded-xl font-semibold hover:bg-gray-300 active:scale-95 transition-all"
               >
                 <RefreshCw className="w-4 h-4" />
                 Changer
@@ -115,7 +115,7 @@ export const BreakScreen = () => {
               
               <button
                 onClick={skipBreak}
-                className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-red-100 text-red-700 rounded-xl font-semibold hover:bg-red-200 transition-colors"
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-red-100 text-red-700 rounded-xl font-semibold hover:bg-red-200 active:scale-95 transition-all"
               >
                 <X className="w-4 h-4" />
                 Skip
@@ -123,10 +123,10 @@ export const BreakScreen = () => {
             </div>
           </div>
         ) : (
-          <div className="space-y-3">
+          <div className="space-y-2">
             <button
               onClick={completeBreak}
-              className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-xl font-semibold hover:from-emerald-600 hover:to-teal-600 transition-all shadow-lg"
+              className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-xl font-semibold hover:from-emerald-600 hover:to-teal-600 active:scale-95 transition-all shadow-lg"
             >
               <Check className="w-5 h-5" />
               Terminé
@@ -134,7 +134,7 @@ export const BreakScreen = () => {
             
             <button
               onClick={skipBreak}
-              className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-red-100 text-red-700 rounded-xl font-semibold hover:bg-red-200 transition-colors"
+              className="w-full flex items-center justify-center gap-2 px-6 py-2 bg-red-100 text-red-700 rounded-xl font-semibold hover:bg-red-200 active:scale-95 transition-all"
             >
               <X className="w-4 h-4" />
               Abandonner
@@ -143,11 +143,11 @@ export const BreakScreen = () => {
         )}
 
         {isBlock && currentActivity.exercises.length > 1 && (
-          <div className="mt-6 flex gap-1 justify-center">
+          <div className="mt-4 flex gap-1 justify-center">
             {currentActivity.exercises.map((_, idx) => (
               <div
                 key={idx}
-                className={`h-2 flex-1 rounded-full transition-colors ${
+                className={`h-1.5 flex-1 rounded-full transition-colors ${
                   idx < currentExerciseIndex
                     ? 'bg-emerald-500'
                     : idx === currentExerciseIndex

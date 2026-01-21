@@ -21,6 +21,19 @@ function App() {
     init();
   }, [initialize]);
 
+  useEffect(() => {
+    // Gérer les notifications persistantes quand l'app passe en arrière-plan
+    const handleVisibilityChange = () => {
+      notificationManager.handleVisibilityChange(() => useTimerStore.getState());
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
+
   const handleSettingsSave = async (newSettings) => {
     await initialize(newSettings);
     setCurrentView('timer');
