@@ -9,6 +9,15 @@ const TIMER_STATES = {
   PAUSED: 'paused'
 };
 
+let timerWorker = null;
+
+const initWorker = () => {
+  if (!timerWorker) {
+    timerWorker = new Worker(new URL('../utils/timerWorker.js', import.meta.url), { type: 'module' });
+  }
+  return timerWorker;
+};
+
 export const useTimerStore = create((set, get) => ({
   state: TIMER_STATES.IDLE,
   timeRemaining: 0,
@@ -51,34 +60,38 @@ export const useTimerStore = create((set, get) => ({
   },
 
   startFocus: () => {
-    const { settings, intervalId } = get();
-    if (intervalId) clearInterval(intervalId);
-    
+    const { settings } = get();
     const totalSeconds = settings.focus_minutes * 60;
     
-    const id = setInterval(() => {
-      const { timeRemaining, state } = get();
-      if (state !== TIMER_STATES.FOCUS) return;
+    const worker = initWorker();
+    
+    worker.onmessage = (e) => {
+      const { type, remaining } = e.data;
       
-      if (timeRemaining <= 1) {
+      if (type === 'TICK') {
+        set({ timeRemaining: remaining });
+      } else if (type === 'COMPLETE') {
         get().completeFocus();
-      } else {
-        set({ timeRemaining: timeRemaining - 1 });
       }
-    }, 1000);
+    };
+    
+    worker.postMessage({ type: 'START', duration: totalSeconds });
 
     set({
       state: TIMER_STATES.FOCUS,
       timeRemaining: totalSeconds,
       totalTime: totalSeconds,
-      intervalId: id,
       currentCycle: get().currentCycle + 1
     });
+
+    if (settings.sound_enabled) {
+      soundManager.playBeep(600, 100);
+    }
 
     if ('Notification' in window && Notification.permission === 'granted') {
       new Notification('Focus démarré', {
         body: `Session de ${settings.focus_minutes} minutes`,
-        icon: '/pwa-192x192.png'
+        icon: '/focusfit-pomodoro/pwa-192x192.png'
       });
     }
   },
@@ -119,66 +132,70 @@ export const useTimerStore = create((set, get) => ({
     }
 
     if (settings.sound_enabled) {
-      const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBTGH0fPTgjMGHm7A7+OZSA0PVqzn77BdGAg+ltryxnMpBSuBzvLZiTYIGGS57OihUBELTKXh8bllHAU2jdXzzn0vBSh+zPDckTwKE1iy6OyrWBUIQ5zd8sFuJAUuhM/z1YU1Bhxqvu7mnEoPDlOq5O+zYBoGPJPY88p2KwUme8rx3ZI+CRJYr+fxrVoXCECZ3PLEcSYELIHO8diJOAgXYrjq6KFRDwxMpOHxtmYdBTaM1PPPfzAFJ37M8N2SPQoSV7Dn8axaFwhAmNzy');
-      audio.play().catch(() => {});
+      soundManager.playNotificationSound();
+    }
+    
+    if (settings.vibration_enabled) {
+      soundManager.vibrate([200, 100, 200]);
     }
   },
 
   startBreak: () => {
-    const { settings, intervalId, currentActivity } = get();
-    if (intervalId) clearInterval(intervalId);
+    const { settings, currentActivity } = get();
     
     const totalSeconds = currentActivity.type === 'block' 
       ? currentActivity.exercises[0].duration_seconds
       : settings.break_minutes * 60;
     
-    const id = setInterval(() => {
-      const { timeRemaining, state } = get();
-      if (state !== TIMER_STATES.BREAK) return;
+    const worker = initWorker();
+    
+    worker.onmessage = (e) => {
+      const { type, remaining } = e.data;
       
-      if (timeRemaining <= 1) {
+      if (type === 'TICK') {
+        set({ timeRemaining: remaining });
+      } else if (type === 'COMPLETE') {
         get().nextExerciseOrComplete();
-      } else {
-        set({ timeRemaining: timeRemaining - 1 });
       }
-    }, 1000);
+    };
+    
+    worker.postMessage({ type: 'START', duration: totalSeconds });
 
     set({
       state: TIMER_STATES.BREAK,
       timeRemaining: totalSeconds,
-      totalTime: totalSeconds,
-      intervalId: id
+      totalTime: totalSeconds
     });
   },
 
   nextExerciseOrComplete: () => {
-    const { currentActivity, currentExerciseIndex, intervalId } = get();
+    const { currentActivity, currentExerciseIndex } = get();
     
     if (currentActivity.type === 'block') {
       const nextIndex = currentExerciseIndex + 1;
       
       if (nextIndex < currentActivity.exercises.length) {
-        if (intervalId) clearInterval(intervalId);
-        
         const nextExercise = currentActivity.exercises[nextIndex];
         const totalSeconds = nextExercise.duration_seconds;
         
-        const id = setInterval(() => {
-          const { timeRemaining, state } = get();
-          if (state !== TIMER_STATES.BREAK) return;
+        const worker = initWorker();
+        
+        worker.onmessage = (e) => {
+          const { type, remaining } = e.data;
           
-          if (timeRemaining <= 1) {
+          if (type === 'TICK') {
+            set({ timeRemaining: remaining });
+          } else if (type === 'COMPLETE') {
             get().nextExerciseOrComplete();
-          } else {
-            set({ timeRemaining: timeRemaining - 1 });
           }
-        }, 1000);
+        };
+        
+        worker.postMessage({ type: 'START', duration: totalSeconds });
 
         set({
           currentExerciseIndex: nextIndex,
           timeRemaining: totalSeconds,
-          totalTime: totalSeconds,
-          intervalId: id
+          totalTime: totalSeconds
         });
         return;
       }
@@ -188,8 +205,10 @@ export const useTimerStore = create((set, get) => ({
   },
 
   completeBreak: async () => {
-    const { settings, sessionId, sessionStats, currentActivity, intervalId } = get();
-    if (intervalId) clearInterval(intervalId);
+    const { settings, sessionId, sessionStats, currentActivity } = get();
+    
+    const worker = initWorker();
+    worker.postMessage({ type: 'STOP' });
 
     const isAbs = currentActivity.category === 'abs';
     const breakSeconds = currentActivity.type === 'block'
@@ -227,17 +246,29 @@ export const useTimerStore = create((set, get) => ({
       currentExerciseIndex: 0
     });
 
+    if (settings.sound_enabled) {
+      soundManager.playNotificationSound();
+    }
+    
+    if (settings.vibration_enabled) {
+      soundManager.vibrate([200, 100, 200, 100, 400]);
+    }
+
     if ('Notification' in window && Notification.permission === 'granted') {
       new Notification('Pause terminée !', {
         body: 'Retour au focus',
-        icon: '/focusfit-pomodoro/pwa-192x192.png'
+        icon: '/focusfit-pomodoro/pwa-192x192.png',
+        vibrate: settings.vibration_enabled ? [200, 100, 200, 100, 400] : undefined,
+        requireInteraction: true
       });
     }
   },
 
   skipBreak: async () => {
-    const { sessionId, sessionStats, currentActivity, intervalId } = get();
-    if (intervalId) clearInterval(intervalId);
+    const { sessionId, sessionStats, currentActivity } = get();
+    
+    const worker = initWorker();
+    worker.postMessage({ type: 'STOP' });
 
     const newStats = {
       ...sessionStats,
