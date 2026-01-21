@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { db, getTodaySession, createSession, updateSession, addCycleLog } from '../db/database';
 import { RotationManager } from '../utils/rotation';
+import { soundManager } from '../utils/soundManager';
 
 const TIMER_STATES = {
   IDLE: 'idle',
