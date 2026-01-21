@@ -100,7 +100,7 @@ export const Timer = () => {
       </div>
 
       {/* Boutons alignés en bas */}
-      <div className="p-4 pb-24 bg-gradient-to-br from-indigo-50 to-purple-50">
+      <div className="p-4 pb-28 bg-gradient-to-br from-indigo-50 to-purple-50">
         <div className="flex gap-2 justify-center">
           {isIdle && (
             <button
