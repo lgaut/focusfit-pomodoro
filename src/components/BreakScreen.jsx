@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Check, X, RefreshCw, Clock, Bike, Dumbbell, Flame, Zap } from 'lucide-react';
 import { useTimerStore } from '../store/useTimerStore';
-import { getExerciseGif } from '../services/giphyService';
 
 const formatTime = (seconds) => {
   const mins = Math.floor(seconds / 60);
@@ -47,8 +46,6 @@ export const BreakScreen = () => {
     state
   } = useTimerStore();
 
-  const [gifUrl, setGifUrl] = useState(null);
-  const [gifLoading, setGifLoading] = useState(true);
 
   if (!currentActivity) return null;
 
@@ -61,42 +58,17 @@ export const BreakScreen = () => {
   const categoryColor = getCategoryColor(currentActivity.category);
   const categoryIcon = getCategoryIcon(currentActivity.category);
 
-  // Charger le GIF pour l'exercice actuel
-  useEffect(() => {
-    const loadGif = async () => {
-      setGifLoading(true);
-      const url = await getExerciseGif(currentExercise.id);
-      setGifUrl(url);
-      setGifLoading(false);
-    };
-
-    loadGif();
-  }, [currentExercise.id]);
 
   return (
     <div className="flex flex-col h-screen bg-gradient-to-br from-emerald-50 to-teal-50 overflow-hidden">
       <div className="flex-1 flex flex-col p-4 overflow-y-auto">
-        {/* GIF ou emoji de catégorie */}
-        {gifUrl ? (
-          <div className="w-full max-w-sm mx-auto mb-4 rounded-2xl overflow-hidden shadow-lg bg-white">
-            <img 
-              src={gifUrl} 
-              alt={currentExercise.name}
-              className="w-full h-48 object-cover"
-            />
-          </div>
-        ) : (
-          <div className={`w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br ${categoryColor} flex items-center justify-center shadow-lg ${gifLoading ? 'animate-pulse' : ''}`}>
-            {gifLoading ? (
-              <Clock className="w-8 h-8 text-white animate-spin" />
-            ) : (
-              (() => {
-                const Icon = categoryIcon;
-                return <Icon className="w-8 h-8 text-white" />;
-              })()
-            )}
-          </div>
-        )}
+        {/* Icône de catégorie */}
+        <div className={`w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br ${categoryColor} flex items-center justify-center shadow-lg`}>
+          {(() => {
+            const Icon = categoryIcon;
+            return <Icon className="w-8 h-8 text-white" />;
+          })()}
+        </div>
 
         <h2 className="text-2xl font-bold text-center text-gray-800 mb-3">
           Pause Sport !
