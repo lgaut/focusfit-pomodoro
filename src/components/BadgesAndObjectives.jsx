@@ -1,6 +1,15 @@
 import { motion } from 'framer-motion';
-import { Trophy, Target, Lock } from 'lucide-react';
+import { 
+  Trophy, Target, Lock, Flame, Rocket, Crown, Brain, Zap, Dumbbell, 
+  Award, CircleDot, Activity, Star, Sunrise, Moon, Calendar, BarChart3 
+} from 'lucide-react';
 import { getUnlockedBadges, getNextBadges, getAllObjectivesProgress } from '../utils/achievements';
+
+// Map icon names to lucide-react components
+const iconMap = {
+  Flame, Rocket, Crown, Target, Brain, Zap, Dumbbell, Award, Trophy,
+  CircleDot, Activity, Star, Sunrise, Moon, Calendar, BarChart3
+};
 
 export const BadgesAndObjectives = ({ stats }) => {
   const unlockedBadges = getUnlockedBadges(stats);
@@ -62,6 +71,7 @@ export const BadgesAndObjectives = ({ stats }) => {
 const ObjectiveCard = ({ objective }) => {
   const { progress } = objective;
   const isCompleted = progress.completed;
+  const IconComponent = iconMap[objective.icon];
 
   return (
     <motion.div
@@ -74,8 +84,10 @@ const ObjectiveCard = ({ objective }) => {
       }`}
     >
       <div className="flex items-start gap-3">
-        <div className={`text-2xl flex-shrink-0 ${isCompleted ? 'animate-bounce' : ''}`}>
-          {objective.icon}
+        <div className={`flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center ${
+          isCompleted ? 'bg-green-500 animate-bounce' : 'bg-indigo-100'
+        }`}>
+          {IconComponent && <IconComponent className={`w-6 h-6 ${isCompleted ? 'text-white' : 'text-indigo-600'}`} />}
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between mb-1">
@@ -117,6 +129,8 @@ const ObjectiveCard = ({ objective }) => {
 };
 
 const BadgeCard = ({ badge, unlocked }) => {
+  const IconComponent = iconMap[badge.icon];
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.8 }}
@@ -135,8 +149,8 @@ const BadgeCard = ({ badge, unlocked }) => {
         </div>
       )}
       
-      <div className={`text-3xl mb-1 ${unlocked ? '' : 'filter grayscale'}`}>
-        {badge.icon}
+      <div className={`flex items-center justify-center mb-1 ${unlocked ? '' : 'opacity-50'}`}>
+        {IconComponent && <IconComponent className={`w-8 h-8 ${unlocked ? 'text-white' : 'text-gray-600'}`} />}
       </div>
       
       <div className={`text-xs font-bold mb-0.5 ${
