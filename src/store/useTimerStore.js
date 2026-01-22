@@ -112,7 +112,9 @@ export const useTimerStore = create((set, get) => ({
     if ('Notification' in window && Notification.permission === 'granted') {
       new Notification('Focus démarré', {
         body: `Session de ${settings.focus_minutes} minutes`,
-        icon: '/focusfit-pomodoro/pwa-192x192.png'
+        icon: '/focusfit-pomodoro/pwa-192x192.png',
+        vibrate: settings.vibration_enabled ? [200, 100, 200] : undefined,
+        silent: !settings.sound_enabled
       });
     }
   },
@@ -148,7 +150,9 @@ export const useTimerStore = create((set, get) => ({
         body: `C'est l'heure de : ${activityName}`,
         icon: '/focusfit-pomodoro/pwa-192x192.png',
         tag: 'break-notification',
-        requireInteraction: true
+        requireInteraction: true,
+        vibrate: settings.vibration_enabled ? [200, 100, 200, 100, 200] : undefined,
+        silent: !settings.sound_enabled
       });
     }
 
@@ -286,7 +290,8 @@ export const useTimerStore = create((set, get) => ({
         body: 'Retour au focus',
         icon: '/focusfit-pomodoro/pwa-192x192.png',
         vibrate: settings.vibration_enabled ? [200, 100, 200, 100, 400] : undefined,
-        requireInteraction: true
+        requireInteraction: true,
+        silent: !settings.sound_enabled
       });
     }
   },
