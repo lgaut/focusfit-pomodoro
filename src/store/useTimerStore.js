@@ -41,24 +41,40 @@ export const useTimerStore = create((set, get) => ({
 
   initialize: async (settings) => {
     set({ settings });
-    let session = await getTodaySession();
-    
-    if (!session) {
-      const id = await createSession();
-      session = await db.sessions.get(id);
-    }
-    
-    set({
-      sessionId: session.id,
-      sessionStats: {
-        cycles_completed: session.cycles_completed,
-        focus_total_seconds: session.focus_total_seconds,
-        sport_total_seconds: session.sport_total_seconds,
-        breaks_done: session.breaks_done,
-        breaks_skipped: session.breaks_skipped,
-        abs_breaks_done: session.abs_breaks_done
+    try {
+      let session = await getTodaySession();
+      
+      if (!session) {
+        const id = await createSession();
+        session = await db.sessions.get(id);
       }
-    });
+      
+      set({
+        sessionId: session.id,
+        sessionStats: {
+          cycles_completed: session.cycles_completed,
+          focus_total_seconds: session.focus_total_seconds,
+          sport_total_seconds: session.sport_total_seconds,
+          breaks_done: session.breaks_done,
+          breaks_skipped: session.breaks_skipped,
+          abs_breaks_done: session.abs_breaks_done
+        }
+      });
+    } catch (error) {
+      console.warn('Session initialization failed:', error);
+      // Initialize with empty stats if database fails
+      set({
+        sessionId: null,
+        sessionStats: {
+          cycles_completed: 0,
+          focus_total_seconds: 0,
+          sport_total_seconds: 0,
+          breaks_done: 0,
+          breaks_skipped: 0,
+          abs_breaks_done: 0
+        }
+      });
+    }
   },
 
   startFocus: () => {

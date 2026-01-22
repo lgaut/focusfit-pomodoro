@@ -27,11 +27,16 @@ export const defaultSettings = {
 };
 
 export const initializeSettings = async () => {
-  const existing = await db.settings.get('main');
-  if (!existing) {
-    await db.settings.add(defaultSettings);
+  try {
+    const existing = await db.settings.get('main');
+    if (!existing) {
+      await db.settings.add(defaultSettings);
+    }
+    return existing || defaultSettings;
+  } catch (error) {
+    console.warn('Database error, using default settings:', error);
+    return defaultSettings;
   }
-  return existing || defaultSettings;
 };
 
 export const getSettings = async () => {

@@ -1,0 +1,105 @@
+{
+  "workouts_20min": [
+    {
+      "id": "w20_abs_express",
+      "title": "Tablettes express",
+      "total_duration_minutes": 20,
+      "exercises": [
+        { "name": "Planche", "duration_seconds": 60, "description": "Gainage sur les avant-bras, corps bien droit, ventre serré." },
+        { "name": "Crunch lent", "duration_seconds": 120, "description": "Allongé sur le dos, remonte légèrement les épaules, contrôle le mouvement." },
+        { "name": "Relevé de bassin", "duration_seconds": 120, "description": "Genoux vers la poitrine, décolle légèrement les fesses (bas du ventre)." },
+        { "name": "Vélo au sol", "duration_seconds": 120, "description": "Allongé sur le dos, pédale dans le vide, coude/genou si possible." },
+        { "name": "Planche latérale gauche", "duration_seconds": 60, "description": "Sur le côté gauche, appui sur l’avant-bras, corps aligné." },
+        { "name": "Planche latérale droite", "duration_seconds": 60, "description": "Sur le côté droit, appui sur l’avant-bras, corps aligné." },
+        { "name": "Montées de genoux rapides", "duration_seconds": 120, "description": "Position pompe, ramène les genoux vers la poitrine en alternant." },
+        { "name": "Gainage sur le dos", "duration_seconds": 120, "description": "Allongé sur le dos, ventre serré, jambes légèrement levées." },
+        { "name": "Crunch + rotation", "duration_seconds": 120, "description": "Crunch en tournant légèrement à gauche/droite pour travailler les côtés." },
+        { "name": "Planche (finisher)", "duration_seconds": 180, "description": "Tiens 3 min si possible, sinon 3 x 1 min avec 20 sec de pause." }
+      ]
+    },
+    {
+      "id": "w20_arms_dumbbells",
+      "title": "Bras & épaules haltères",
+      "total_duration_minutes": 20,
+      "exercises": [
+        { "name": "Curl biceps", "duration_seconds": 120, "description": "Debout, dos droit, monte/descends sans balancer." },
+        { "name": "Triceps au-dessus de la tête", "duration_seconds": 120, "description": "Un haltère à deux mains, descends derrière la tête puis remonte." },
+        { "name": "Développé épaules", "duration_seconds": 120, "description": "Pousse les haltères au-dessus de la tête, redescends contrôlé." },
+        { "name": "Rowing haltère (dos)", "duration_seconds": 120, "description": "Tire les haltères vers toi, serre les omoplates, dos droit." },
+        { "name": "Curl marteau", "duration_seconds": 120, "description": "Paumes face à face, monte/descends lentement." },
+        { "name": "Élévations latérales", "duration_seconds": 120, "description": "Lève les bras sur les côtés, léger, contrôle l’amplitude." },
+        { "name": "Pompes", "duration_seconds": 120, "description": "Pompes classiques ou sur genoux si besoin." },
+        { "name": "Planche", "duration_seconds": 120, "description": "Gainage avant-bras, ventre serré, dos droit." },
+        { "name": "Curl biceps (lent)", "duration_seconds": 120, "description": "Même exercice mais plus lent pour augmenter la difficulté." },
+        { "name": "Triceps (petites reps propres)", "duration_seconds": 120, "description": "Petites répétitions propres, sans forcer les épaules." }
+      ]
+    },
+    {
+      "id": "w20_bike_fatburn",
+      "title": "Vélo cardio brûle-graisse",
+      "total_duration_minutes": 20,
+      "exercises": [
+        { "name": "Vélo (échauffement)", "duration_seconds": 180, "description": "Pédale tranquillement, respiration stable." },
+        { "name": "Vélo (rythme moyen)", "duration_seconds": 120, "description": "Tu accélères un peu, tu chauffes." },
+        { "name": "Vélo (récup)", "duration_seconds": 60, "description": "Ralentis, récupère." },
+        { "name": "Vélo (soutenu)", "duration_seconds": 120, "description": "Plus rapide, tu transpires un peu." },
+        { "name": "Vélo (récup)", "duration_seconds": 60, "description": "Ralentis, respiration calme." },
+        { "name": "Vélo (soutenu)", "duration_seconds": 120, "description": "Même intensité soutenue." },
+        { "name": "Vélo (récup)", "duration_seconds": 60, "description": "Ralentis pour souffler." },
+        { "name": "Vélo (rythme moyen)", "duration_seconds": 180, "description": "Rythme stable, tu tiens sans exploser." },
+        { "name": "Vélo (retour au calme)", "duration_seconds": 300, "description": "Ralentis progressivement et termine tranquille." }
+      ]
+    },
+    {
+      "id": "w20_fullbody_nomaterial",
+      "title": "Full body sans matériel",
+      "total_duration_minutes": 20,
+      "exercises": [
+        { "name": "Squats", "duration_seconds": 120, "description": "Descends/monte, dos droit, talons au sol." },
+        { "name": "Pompes", "duration_seconds": 120, "description": "Classiques ou sur genoux, contrôle." },
+        { "name": "Fentes alternées", "duration_seconds": 120, "description": "Un pas en avant, pousse sur le talon." },
+        { "name": "Planche", "duration_seconds": 60, "description": "Gainage ventre serré." },
+        { "name": "Montées de genoux rapides", "duration_seconds": 120, "description": "Position pompe, genoux alternés rapides." },
+        { "name": "Pont fessier", "duration_seconds": 120, "description": "Allongé, monte les hanches en serrant les fesses." },
+        { "name": "Crunch", "duration_seconds": 120, "description": "Petit mouvement, contrôle." },
+        { "name": "Jumping jacks", "duration_seconds": 120, "description": "Saute en ouvrant bras/jambes, rythme constant." },
+        { "name": "Gainage sur le dos", "duration_seconds": 120, "description": "Ventre serré, jambes levées légèrement." },
+        { "name": "Marche rapide sur place", "duration_seconds": 180, "description": "Marche rapide, souffle, sans t’arrêter." }
+      ]
+    },
+    {
+      "id": "w20_back_posture_abs",
+      "title": "Dos + posture + abdos",
+      "total_duration_minutes": 20,
+      "exercises": [
+        { "name": "Rowing haltère", "duration_seconds": 180, "description": "Tire vers toi, omoplates serrées, dos droit." },
+        { "name": "Superman", "duration_seconds": 120, "description": "Allongé ventre au sol, lève bras/jambes doucement." },
+        { "name": "Planche", "duration_seconds": 60, "description": "Gainage ventre serré." },
+        { "name": "Crunch", "duration_seconds": 120, "description": "Petit mouvement propre." },
+        { "name": "Relevé de bassin", "duration_seconds": 120, "description": "Bas du ventre, enroulement du bassin." },
+        { "name": "Oiseau-chien (bird dog)", "duration_seconds": 120, "description": "À 4 pattes, bras et jambe opposée tendus, contrôle." },
+        { "name": "Planche latérale gauche", "duration_seconds": 60, "description": "Côté gauche, corps aligné." },
+        { "name": "Planche latérale droite", "duration_seconds": 60, "description": "Côté droit, corps aligné." },
+        { "name": "Gainage sur le dos", "duration_seconds": 120, "description": "Ventre serré, jambes levées légèrement." },
+        { "name": "Étirements dos/hanches", "duration_seconds": 240, "description": "Respire lentement, détends le bas du dos et les hanches." }
+      ]
+    },
+    {
+      "id": "w20_abs_cardio_mix",
+      "title": "Abdos + cardio (tablettes + sueur)",
+      "total_duration_minutes": 20,
+      "exercises": [
+        { "name": "Planche", "duration_seconds": 60, "description": "Gainage avant-bras, ventre serré." },
+        { "name": "Jumping jacks", "duration_seconds": 120, "description": "Rythme constant, cardio simple." },
+        { "name": "Crunch", "duration_seconds": 120, "description": "Remonte les épaules en contrôlant." },
+        { "name": "Montées de genoux rapides", "duration_seconds": 120, "description": "Position pompe, genoux alternés rapides." },
+        { "name": "Relevé de bassin", "duration_seconds": 120, "description": "Bas du ventre, décolle légèrement les fesses." },
+        { "name": "Marche rapide sur place", "duration_seconds": 120, "description": "Marche active, souffle." },
+        { "name": "Vélo au sol", "duration_seconds": 120, "description": "Pédale au sol, rotation contrôlée." },
+        { "name": "Squats", "duration_seconds": 120, "description": "Squats propres, sans précipiter." },
+        { "name": "Gainage sur le dos", "duration_seconds": 120, "description": "Tiens ventre serré." },
+        { "name": "Retour au calme", "duration_seconds": 180, "description": "Respiration lente + marche tranquille." }
+      ]
+    }
+  ]
+}
