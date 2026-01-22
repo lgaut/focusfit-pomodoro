@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { BarChart3, TrendingUp, Award, Calendar, Flame, Target, Clock, Zap, ChevronLeft } from 'lucide-react';
 import { getSessionStats } from '../db/database';
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import { BadgesAndObjectives } from './BadgesAndObjectives';
 
 const COLORS = ['#6366f1', '#34c759', '#ff9500', '#ff3b30', '#007aff'];
 
@@ -161,6 +162,9 @@ export const Stats = () => {
                 </div>
               </div>
             )}
+
+            {/* Badges and Objectives */}
+            <BadgesAndObjectives stats={stats} />
 
             {/* View Analysis Button */}
             <button
