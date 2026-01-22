@@ -3,6 +3,32 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* Couleurs système - Light mode (iOS/Android) */
+    --color-bg-primary: 245 245 247; /* #f5f5f7 iOS light */
+    --color-bg-surface: 255 255 255; /* #ffffff */
+    --color-border: 229 229 234; /* #e5e5ea iOS separator */
+    --color-text-primary: 0 0 0; /* #000000 */
+    --color-text-secondary: 60 60 67; /* #3c3c43 iOS secondary */
+    
+    /* Status bar color pour Android */
+    --color-status-bar: 79 70 229; /* indigo-600 */
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      /* Couleurs système - Dark mode (iOS/Android) */
+      --color-bg-primary: 0 0 0; /* #000000 iOS/OLED dark */
+      --color-bg-surface: 28 28 30; /* #1c1c1e iOS dark surface */
+      --color-border: 56 56 58; /* #38383a iOS dark separator */
+      --color-text-primary: 255 255 255; /* #ffffff */
+      --color-text-secondary: 174 174 178; /* #aeaeb2 iOS dark secondary */
+      
+      /* Status bar color pour Android dark */
+      --color-status-bar: 28 28 30;
+    }
+  }
+
   body {
     @apply antialiased;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,11 +36,44 @@
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    
+    /* Appliquer les couleurs système */
+    background-color: rgb(var(--color-bg-primary));
+    color: rgb(var(--color-text-primary));
+  }
+
+  /* Support du safe-area pour iOS (notch) */
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
   }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  
+  /* Utilitaires pour couleurs système natives */
+  .bg-system {
+    background-color: rgb(var(--color-bg-primary));
+  }
+  
+  .bg-surface {
+    background-color: rgb(var(--color-bg-surface));
+  }
+  
+  .border-system {
+    border-color: rgb(var(--color-border));
+  }
+  
+  .text-system {
+    color: rgb(var(--color-text-primary));
+  }
+  
+  .text-system-secondary {
+    color: rgb(var(--color-text-secondary));
   }
 }

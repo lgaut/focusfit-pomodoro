@@ -3,10 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Viewport optimisé pour iOS/Android -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content="Pomodoro avec pauses sportives intelligentes" />
-    <meta name="theme-color" content="#6366f1" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    
+    <!-- Theme color dynamique selon le mode système -->
+    <meta name="theme-color" content="#4f46e5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1c1c1e" media="(prefers-color-scheme: dark)" />
+    
+    <!-- iOS optimizations -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="FocusFit" />
+    <link rel="apple-touch-icon" href="/focusfit-pomodoro/apple-touch-icon.png" />
+    
+    <!-- Android optimizations -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    
+    <link rel="manifest" href="/focusfit-pomodoro/manifest.json" />
     <title>FocusFit Pomodoro</title>
   </head>
   <body>
