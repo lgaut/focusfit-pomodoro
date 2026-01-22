@@ -218,3 +218,130 @@ export const getTodayCompletedWorkouts = async () => {
     return [];
   }
 };
+
+// Settings synchronization
+export const syncSettingsToCloud = async (settings) => {
+  const userId = getUserId();
+
+  const payload = {
+    focus_minutes: settings.focus_minutes,
+    break_minutes: settings.break_minutes,
+    work_start: settings.work_start,
+    work_end: settings.work_end,
+    equipment: settings.equipment,
+    program: settings.program,
+    rotation: settings.rotation,
+    notifications_enabled: settings.notifications_enabled,
+    sound_enabled: settings.sound_enabled,
+    vibration_enabled: settings.vibration_enabled,
+    exercise_preferences: settings.exercise_preferences,
+    updated_at: new Date().toISOString()
+  };
+
+  console.log('☁️ Syncing settings to Supabase:', payload);
+
+  try {
+    // Check if settings exist
+    const checkResponse = await fetch(
+      `${SUPABASE_URL}/rest/v1/user_settings?user_id=eq.${userId}&select=id`,
+      {
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': `Bearer ${SUPABASE_KEY}`
+        }
+      }
+    );
+
+    const existing = await checkResponse.json();
+
+    if (existing && existing.length > 0) {
+      // Update with PATCH
+      const updateResponse = await fetch(
+        `${SUPABASE_URL}/rest/v1/user_settings?user_id=eq.${userId}`,
+        {
+          method: 'PATCH',
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        }
+      );
+
+      if (!updateResponse.ok) {
+        const errorText = await updateResponse.text();
+        console.warn('Supabase settings update failed:', updateResponse.status, errorText);
+      } else {
+        console.log('✅ Settings synced to cloud');
+      }
+    } else {
+      // Create with POST
+      const createResponse = await fetch(`${SUPABASE_URL}/rest/v1/user_settings`, {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': `Bearer ${SUPABASE_KEY}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          user_id: userId,
+          ...payload
+        })
+      });
+
+      if (!createResponse.ok) {
+        const errorText = await createResponse.text();
+        console.warn('Supabase settings create failed:', createResponse.status, errorText);
+      } else {
+        console.log('✅ Settings created in cloud');
+      }
+    }
+  } catch (err) {
+    console.warn('Settings sync error:', err);
+  }
+};
+
+export const loadSettingsFromCloud = async () => {
+  const userId = getUserId();
+
+  try {
+    const response = await fetch(
+      `${SUPABASE_URL}/rest/v1/user_settings?user_id=eq.${userId}&select=*`,
+      {
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': `Bearer ${SUPABASE_KEY}`
+        }
+      }
+    );
+
+    if (!response.ok) {
+      console.warn('Supabase settings not found. Using local settings.');
+      return null;
+    }
+
+    const data = await response.json();
+    if (data && data.length > 0) {
+      console.log('✅ Settings loaded from cloud');
+      return {
+        id: 'main',
+        focus_minutes: data[0].focus_minutes,
+        break_minutes: data[0].break_minutes,
+        work_start: data[0].work_start,
+        work_end: data[0].work_end,
+        equipment: data[0].equipment,
+        program: data[0].program,
+        rotation: data[0].rotation,
+        notifications_enabled: data[0].notifications_enabled,
+        sound_enabled: data[0].sound_enabled,
+        vibration_enabled: data[0].vibration_enabled,
+        exercise_preferences: data[0].exercise_preferences
+      };
+    }
+    return null;
+  } catch (err) {
+    console.warn('Settings load error:', err);
+    return null;
+  }
+};

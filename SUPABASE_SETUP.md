@@ -23,14 +23,14 @@ Supabase permet de sauvegarder tes stats et sessions dans le cloud. Tu pourras a
 4. Clique sur **"Create new project"**
 5. Attends 1-2 minutes que le projet se crée ☕
 
-### 3. Créer la table de sessions (méthode simple)
+### 3. Créer les tables (méthode simple)
 
 1. Dans le menu gauche, clique sur **"SQL Editor"**
 2. Clique sur **"New query"**
 3. **Copie-colle ce code SQL** :
 
 ```sql
--- Créer la table pour sauvegarder tes sessions quotidiennes
+-- Table pour sauvegarder tes sessions quotidiennes
 CREATE TABLE user_sessions (
   id BIGSERIAL PRIMARY KEY,
   user_id TEXT NOT NULL,
@@ -46,11 +46,32 @@ CREATE TABLE user_sessions (
   UNIQUE(user_id, date)
 );
 
+-- Table pour sauvegarder tes paramètres (NOUVEAU!)
+CREATE TABLE user_settings (
+  id BIGSERIAL PRIMARY KEY,
+  user_id TEXT NOT NULL UNIQUE,
+  focus_minutes INTEGER NOT NULL DEFAULT 30,
+  break_minutes INTEGER NOT NULL DEFAULT 5,
+  work_start TEXT NOT NULL DEFAULT '08:00',
+  work_end TEXT NOT NULL DEFAULT '17:30',
+  equipment JSONB NOT NULL DEFAULT '{"bike": true, "dumbbell": true}'::jsonb,
+  program TEXT NOT NULL DEFAULT 'program_abs_tablettes',
+  rotation TEXT NOT NULL DEFAULT 'rotation_basic',
+  notifications_enabled BOOLEAN NOT NULL DEFAULT true,
+  sound_enabled BOOLEAN NOT NULL DEFAULT true,
+  vibration_enabled BOOLEAN NOT NULL DEFAULT true,
+  exercise_preferences JSONB NOT NULL DEFAULT '{"categories": {"abs": true, "arms": true, "bike": true, "fullbody": true, "back": true}, "disabled_exercises": [], "custom_durations": {}}'::jsonb,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
 -- Désactiver RLS pour simplifier (usage personnel)
 ALTER TABLE user_sessions DISABLE ROW LEVEL SECURITY;
+ALTER TABLE user_settings DISABLE ROW LEVEL SECURITY;
 
--- Index pour rechercher rapidement par utilisateur et date
+-- Index pour rechercher rapidement
 CREATE INDEX idx_user_sessions_user_date ON user_sessions(user_id, date DESC);
+CREATE INDEX idx_user_settings_user_id ON user_settings(user_id);
 ```
 
 4. Clique sur **"Run"** (ou appuie sur Ctrl+Enter)
@@ -99,8 +120,17 @@ Contrairement à Firebase, **pas besoin de règles de sécurité compliquées** 
 
 ### Synchronisation automatique
 
+**Ce qui est synchronisé :**
+- ✅ **Sessions quotidiennes** - Cycles, temps de focus, pauses effectuées
+- ✅ **Paramètres** - Durées, horaires, équipement, préférences d'exercices
+- ✅ **User ID** - Conservé même après les mises à jour de l'app
+
+**Comment ça marche :**
 - Chaque fois que tu complètes un cycle, tes stats sont sauvegardées dans Supabase
-- Quand tu ouvres l'app sur un autre appareil, elle charge automatiquement tes dernières stats
+- Chaque fois que tu changes un paramètre, il est synchronisé automatiquement
+- Quand tu ouvres l'app sur un autre appareil, elle charge automatiquement tes dernières données
+- Ton **User ID est stocké dans le navigateur** (localStorage) et **dans Supabase**
+- Même si tu vides le cache ou mets à jour l'app, ton ID est récupéré depuis Supabase
 - Pas besoin de compte, juste ton ID utilisateur !
 
 ## 🎯 Avantages de Supabase vs Firebase

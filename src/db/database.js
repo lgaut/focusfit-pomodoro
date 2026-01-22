@@ -42,11 +42,32 @@ export const defaultSettings = {
 
 export const initializeSettings = async () => {
   try {
+    // Try to load settings from cloud first
+    const { loadSettingsFromCloud } = await import('../services/cloudSync');
+    const cloudSettings = await loadSettingsFromCloud();
+    
+    if (cloudSettings) {
+      // Cloud settings found, use them and update local
+      const existing = await db.settings.get('main');
+      if (existing) {
+        await db.settings.update('main', cloudSettings);
+      } else {
+        await db.settings.add(cloudSettings);
+      }
+      console.log('✅ Settings loaded from cloud and synced locally');
+      return cloudSettings;
+    }
+    
+    // No cloud settings, use local or default
     const existing = await db.settings.get('main');
     if (!existing) {
       await db.settings.add(defaultSettings);
+      // Sync default settings to cloud
+      const { syncSettingsToCloud } = await import('../services/cloudSync');
+      await syncSettingsToCloud(defaultSettings);
+      return defaultSettings;
     }
-    return existing || defaultSettings;
+    return existing;
   } catch (error) {
     console.warn('Database error, using default settings:', error);
     return defaultSettings;
@@ -59,6 +80,13 @@ export const getSettings = async () => {
 
 export const updateSettings = async (updates) => {
   await db.settings.update('main', updates);
+  
+  // Sync to cloud
+  const updatedSettings = await db.settings.get('main');
+  if (updatedSettings) {
+    const { syncSettingsToCloud } = await import('../services/cloudSync');
+    await syncSettingsToCloud(updatedSettings);
+  }
 };
 
 export const getTodaySession = async () => {
