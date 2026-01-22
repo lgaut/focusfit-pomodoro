@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import { Dumbbell, Clock, Play, ChevronRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Dumbbell, Clock, Play, ChevronRight, CheckCircle2 } from 'lucide-react';
 import workoutsData from '../../exercices_only.json';
+import { getTodayCompletedWorkouts } from '../services/cloudSync';
 
 const getCategoryIcon = (id) => {
   if (id.includes('abs')) return '🔥';
@@ -22,7 +23,16 @@ const getCategoryColor = (id) => {
 
 export const Workouts = ({ onStartWorkout }) => {
   const [selectedWorkout, setSelectedWorkout] = useState(null);
+  const [completedWorkouts, setCompletedWorkouts] = useState([]);
   const workouts = workoutsData.workouts_20min;
+
+  useEffect(() => {
+    const loadCompletedWorkouts = async () => {
+      const completed = await getTodayCompletedWorkouts();
+      setCompletedWorkouts(completed);
+    };
+    loadCompletedWorkouts();
+  }, []);
 
   if (selectedWorkout) {
     return (
@@ -110,37 +120,54 @@ export const Workouts = ({ onStartWorkout }) => {
         </p>
 
         <div className="space-y-3">
-          {workouts.map((workout) => (
-            <button
-              key={workout.id}
-              onClick={() => setSelectedWorkout(workout)}
-              className="w-full bg-white rounded-xl p-4 shadow-md hover:shadow-lg active:scale-98 transition-all text-left"
-            >
-              <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-full bg-white shadow-sm flex items-center justify-center flex-shrink-0">
-                  <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${getCategoryColor(workout.id)} flex items-center justify-center text-xl`}>
-                    {getCategoryIcon(workout.id)}
+          {workouts.map((workout) => {
+            const isCompleted = completedWorkouts.includes(workout.id);
+            return (
+              <button
+                key={workout.id}
+                onClick={() => setSelectedWorkout(workout)}
+                className={`w-full bg-white rounded-xl p-4 shadow-md hover:shadow-lg active:scale-98 transition-all text-left ${
+                  isCompleted ? 'ring-2 ring-emerald-500' : ''
+                }`}
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-14 h-14 rounded-full bg-white shadow-sm flex items-center justify-center flex-shrink-0 relative">
+                    <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${getCategoryColor(workout.id)} flex items-center justify-center text-xl`}>
+                      {getCategoryIcon(workout.id)}
+                    </div>
+                    {isCompleted && (
+                      <div className="absolute -top-1 -right-1 w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center">
+                        <CheckCircle2 className="w-4 h-4 text-white" />
+                      </div>
+                    )}
                   </div>
-                </div>
-                
-                <div className="flex-1 min-w-0">
-                  <h3 className="font-bold text-gray-800 mb-1">
-                    {workout.title}
-                  </h3>
-                  <div className="flex items-center gap-3 text-xs text-gray-500">
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-3 h-3" />
-                      {workout.total_duration_minutes} min
-                    </span>
-                    <span>•</span>
-                    <span>{workout.exercises.length} exercices</span>
+                  
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-1">
+                      <h3 className="font-bold text-gray-800">
+                        {workout.title}
+                      </h3>
+                      {isCompleted && (
+                        <span className="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
+                          Fait aujourd'hui
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-3 text-xs text-gray-500">
+                      <span className="flex items-center gap-1">
+                        <Clock className="w-3 h-3" />
+                        {workout.total_duration_minutes} min
+                      </span>
+                      <span>•</span>
+                      <span>{workout.exercises.length} exercices</span>
+                    </div>
                   </div>
-                </div>
 
-                <ChevronRight className="w-5 h-5 text-gray-400 flex-shrink-0" />
-              </div>
-            </button>
-          ))}
+                  <ChevronRight className="w-5 h-5 text-gray-400 flex-shrink-0" />
+                </div>
+              </button>
+            );
+          })}
         </div>
       </div>
     </div>

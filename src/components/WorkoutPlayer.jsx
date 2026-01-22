@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import { Play, Pause, SkipForward, X, Clock, CheckCircle } from 'lucide-react';
+import { Play, Pause, SkipForward, X, CheckCircle, Clock } from 'lucide-react';
+import { markWorkoutComplete } from '../services/cloudSync';
 import { soundManager } from '../utils/soundManager';
 
 const formatTime = (seconds) => {
@@ -61,7 +62,7 @@ export const WorkoutPlayer = ({ workout, onExit }) => {
     };
   }, [isPlaying, timeRemaining]);
 
-  const handleExerciseComplete = () => {
+  const handleExerciseComplete = async () => {
     soundManager.playBeep(800, 200);
     
     if (currentExerciseIndex < totalExercises - 1) {
@@ -72,6 +73,9 @@ export const WorkoutPlayer = ({ workout, onExit }) => {
     } else {
       setIsPlaying(false);
       setIsCompleted(true);
+      
+      // Mark workout as completed in Supabase
+      await markWorkoutComplete(workout.id);
       
       if ('Notification' in window && Notification.permission === 'granted') {
         new Notification('Entraînement terminé ! 🎉', {
@@ -248,7 +252,7 @@ export const WorkoutPlayer = ({ workout, onExit }) => {
         </div>
       </div>
 
-      <div className="fixed bottom-16 left-0 right-0 p-4 bg-gradient-to-t from-emerald-50 via-emerald-50 to-transparent">
+      <div className="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-emerald-50 via-emerald-50 to-transparent">
         <div className="flex gap-2 max-w-md mx-auto">
           <button
             onClick={handlePlayPause}

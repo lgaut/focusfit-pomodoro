@@ -157,3 +157,64 @@ export const importUserData = (sharedUserId) => {
     window.location.reload();
   }
 };
+
+// Workout completion tracking
+export const markWorkoutComplete = async (workoutId) => {
+  const userId = getUserId();
+  const today = new Date().toISOString().split('T')[0];
+
+  try {
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/workout_completions`, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'resolution=ignore-duplicates'
+      },
+      body: JSON.stringify({
+        user_id: userId,
+        workout_id: workoutId,
+        date: today
+      })
+    });
+
+    if (response.ok) {
+      console.log('✅ Workout completion synced to cloud');
+      return true;
+    } else {
+      console.warn('Failed to sync workout completion');
+      return false;
+    }
+  } catch (err) {
+    console.warn('Workout completion sync error:', err);
+    return false;
+  }
+};
+
+export const getTodayCompletedWorkouts = async () => {
+  const userId = getUserId();
+  const today = new Date().toISOString().split('T')[0];
+
+  try {
+    const response = await fetch(
+      `${SUPABASE_URL}/rest/v1/workout_completions?user_id=eq.${userId}&date=eq.${today}&select=workout_id`,
+      {
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': `Bearer ${SUPABASE_KEY}`
+        }
+      }
+    );
+
+    if (!response.ok) {
+      return [];
+    }
+
+    const data = await response.json();
+    return data.map(item => item.workout_id);
+  } catch (err) {
+    console.warn('Failed to load completed workouts:', err);
+    return [];
+  }
+};

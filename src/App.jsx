@@ -85,16 +85,16 @@ function App() {
               onClick={() => setCurrentView('timer')}
             />
             <NavButton
-              icon={<Dumbbell className="w-5 h-5" />}
-              label="Workouts"
-              active={currentView === 'workouts'}
-              onClick={() => setCurrentView('workouts')}
-            />
-            <NavButton
               icon={<BarChart3 className="w-5 h-5" />}
               label="Stats"
               active={currentView === 'stats'}
               onClick={() => setCurrentView('stats')}
+            />
+            <NavButton
+              icon={<Dumbbell className="w-5 h-5" />}
+              label="Workouts"
+              active={currentView === 'workouts'}
+              onClick={() => setCurrentView('workouts')}
             />
             <NavButton
               icon={<SettingsIcon className="w-5 h-5" />}
