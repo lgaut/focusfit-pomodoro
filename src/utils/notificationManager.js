@@ -11,12 +11,28 @@ class NotificationManager {
     return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   }
 
-  async showTimerNotification(state, timeRemaining, totalTime) {
+  async showTimerNotification(state, timeRemaining, totalTime, settings) {
     if (!('Notification' in window) || Notification.permission !== 'granted') {
       return;
     }
 
-    // Fermer la notification précédente
+    // Utiliser le Service Worker si disponible pour les notifications persistantes
+    if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+      try {
+        navigator.serviceWorker.controller.postMessage({
+          type: 'TIMER_UPDATE',
+          state,
+          timeRemaining,
+          totalTime,
+          settings
+        });
+        return;
+      } catch (error) {
+        console.warn('Erreur Service Worker notification:', error);
+      }
+    }
+
+    // Fallback: notification classique si Service Worker non disponible
     if (this.currentNotification) {
       this.currentNotification.close();
     }
@@ -38,7 +54,6 @@ class NotificationManager {
         renotify: true
       });
 
-      // Gérer le clic sur la notification pour revenir à l'app
       this.currentNotification.onclick = () => {
         window.focus();
         this.currentNotification.close();
@@ -54,18 +69,18 @@ class NotificationManager {
 
     // Mettre à jour la notification toutes les 5 secondes pour économiser la batterie
     this.notificationInterval = setInterval(() => {
-      const { state, timeRemaining, totalTime } = getState();
+      const { state, timeRemaining, totalTime, settings } = getState();
       
       // Afficher la notification seulement si l'app est en arrière-plan
       if (document.hidden && (state === 'focus' || state === 'break')) {
-        this.showTimerNotification(state, timeRemaining, totalTime);
+        this.showTimerNotification(state, timeRemaining, totalTime, settings);
       }
     }, 5000);
 
     // Afficher immédiatement si l'app est en arrière-plan
-    const { state, timeRemaining, totalTime } = getState();
+    const { state, timeRemaining, totalTime, settings } = getState();
     if (document.hidden && (state === 'focus' || state === 'break')) {
-      this.showTimerNotification(state, timeRemaining, totalTime);
+      this.showTimerNotification(state, timeRemaining, totalTime, settings);
     }
   }
 
