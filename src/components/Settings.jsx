@@ -36,7 +36,7 @@ export const Settings = ({ onSave }) => {
 
   return (
     <div className="h-screen bg-gradient-to-br from-indigo-50 to-purple-50 overflow-hidden">
-      <div className="h-full p-4 pb-20 space-y-4 overflow-y-auto">
+      <div className="h-full p-4 pb-32 space-y-4 overflow-y-auto">
         <div className="flex items-center gap-2 mb-2">
           <SettingsIcon className="w-6 h-6 text-indigo-600" />
           <h1 className="text-xl font-bold text-gray-800">Paramètres</h1>

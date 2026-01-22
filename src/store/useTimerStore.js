@@ -369,6 +369,7 @@ export const useTimerStore = create((set, get) => ({
       state: TIMER_STATES.IDLE,
       timeRemaining: 0,
       totalTime: 0,
+      currentCycle: 0,
       currentActivity: null,
       currentExerciseIndex: 0
     });
