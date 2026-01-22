@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BarChart3, TrendingUp, Award, Calendar } from 'lucide-react';
+import { BarChart3, TrendingUp, Award, Calendar, Flame } from 'lucide-react';
 import { getSessionStats } from '../db/database';
 
 export const Stats = () => {
@@ -61,7 +61,7 @@ export const Stats = () => {
               color="emerald"
             />
             <StatCard
-              icon={<span className="text-2xl">🔥</span>}
+              icon={<Flame className="w-6 h-6" />}
               value={totalAbsBreaks}
               label="pauses abdos"
               color="purple"

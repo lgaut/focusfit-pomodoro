@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Check, X, RefreshCw, Clock } from 'lucide-react';
+import { Check, X, RefreshCw, Clock, Bike, Dumbbell, Flame, Zap } from 'lucide-react';
 import { useTimerStore } from '../store/useTimerStore';
 import { getExerciseGif } from '../services/giphyService';
 
@@ -12,13 +12,13 @@ const formatTime = (seconds) => {
 const getCategoryIcon = (category) => {
   switch (category) {
     case 'bike':
-      return '🚴';
+      return Bike;
     case 'dumbbell':
-      return '💪';
+      return Dumbbell;
     case 'abs':
-      return '🔥';
+      return Flame;
     default:
-      return '⚡';
+      return Zap;
   }
 };
 
@@ -86,8 +86,15 @@ export const BreakScreen = () => {
             />
           </div>
         ) : (
-          <div className={`w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br ${categoryColor} flex items-center justify-center text-3xl shadow-lg ${gifLoading ? 'animate-pulse' : ''}`}>
-            {gifLoading ? '⏳' : categoryIcon}
+          <div className={`w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br ${categoryColor} flex items-center justify-center shadow-lg ${gifLoading ? 'animate-pulse' : ''}`}>
+            {gifLoading ? (
+              <Clock className="w-8 h-8 text-white animate-spin" />
+            ) : (
+              (() => {
+                const Icon = categoryIcon;
+                return <Icon className="w-8 h-8 text-white" />;
+              })()
+            )}
           </div>
         )}
 

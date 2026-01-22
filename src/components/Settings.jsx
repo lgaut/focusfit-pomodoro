@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Settings as SettingsIcon, Save, Bell } from 'lucide-react';
+import { Settings as SettingsIcon, Save, Bell, Clock, CalendarClock, Dumbbell } from 'lucide-react';
 import { getSettings, updateSettings } from '../db/database';
 import { UserIdDisplay } from './UserIdDisplay';
 
@@ -45,7 +45,7 @@ export const Settings = ({ onSave }) => {
         <UserIdDisplay />
 
         <div className="space-y-4">
-            <Section title="⏱️ Durées">
+            <Section title="Durées" icon={<Clock className="w-4 h-4" />}>
               <InputField
                 label="Focus (minutes)"
                 type="number"
@@ -64,7 +64,7 @@ export const Settings = ({ onSave }) => {
               />
             </Section>
 
-            <Section title="🕐 Horaires de travail">
+            <Section title="Horaires de travail" icon={<CalendarClock className="w-4 h-4" />}>
               <InputField
                 label="Début"
                 type="time"
@@ -79,7 +79,7 @@ export const Settings = ({ onSave }) => {
               />
             </Section>
 
-            <Section title="🏋️ Matériel disponible">
+            <Section title="Matériel disponible" icon={<Dumbbell className="w-4 h-4" />}>
               <CheckboxField
                 label="Vélo d'appartement"
                 checked={settings.equipment.bike}
@@ -98,7 +98,7 @@ export const Settings = ({ onSave }) => {
               />
             </Section>
 
-            <Section title="🔔 Notifications">
+            <Section title="Notifications" icon={<Bell className="w-4 h-4" />}>
               <CheckboxField
                 label="Activer les notifications"
                 checked={settings.notifications_enabled}
@@ -129,9 +129,12 @@ export const Settings = ({ onSave }) => {
   );
 };
 
-const Section = ({ title, children }) => (
+const Section = ({ title, icon, children }) => (
   <div className="bg-white rounded-2xl p-4 shadow-md">
-    <h2 className="text-sm font-bold text-gray-600 mb-3 uppercase tracking-wide">{title}</h2>
+    <div className="flex items-center gap-2 mb-3">
+      {icon && <span className="text-gray-600">{icon}</span>}
+      <h2 className="text-sm font-bold text-gray-600 uppercase tracking-wide">{title}</h2>
+    </div>
     <div className="space-y-3">
       {children}
     </div>

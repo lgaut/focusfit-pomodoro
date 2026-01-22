@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Play, Pause, SkipForward, X, CheckCircle, Clock } from 'lucide-react';
+import { Play, Pause, SkipForward, X, CheckCircle, Clock, Flame, Dumbbell, Bike, Zap, User } from 'lucide-react';
 import { markWorkoutComplete } from '../services/cloudSync';
 import { soundManager } from '../utils/soundManager';
 
@@ -10,12 +10,12 @@ const formatTime = (seconds) => {
 };
 
 const getCategoryIcon = (id) => {
-  if (id.includes('abs')) return '🔥';
-  if (id.includes('arms') || id.includes('dumbbells')) return '💪';
-  if (id.includes('bike')) return '🚴';
-  if (id.includes('fullbody')) return '⚡';
-  if (id.includes('back')) return '🧘';
-  return '🏃';
+  if (id.includes('abs')) return Flame;
+  if (id.includes('arms') || id.includes('dumbbells')) return Dumbbell;
+  if (id.includes('bike')) return Bike;
+  if (id.includes('fullbody')) return Zap;
+  if (id.includes('back')) return User;
+  return User;
 };
 
 const getCategoryColor = (id) => {
@@ -162,8 +162,11 @@ export const WorkoutPlayer = ({ workout, onExit }) => {
         </div>
 
         <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white shadow-md flex items-center justify-center">
-          <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${getCategoryColor(workout.id)} flex items-center justify-center text-3xl`}>
-            {getCategoryIcon(workout.id)}
+          <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${getCategoryColor(workout.id)} flex items-center justify-center`}>
+            {(() => {
+              const Icon = getCategoryIcon(workout.id);
+              return <Icon className="w-8 h-8 text-white" />;
+            })()}
           </div>
         </div>
 

@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
-import { Dumbbell, Clock, Play, ChevronRight, CheckCircle2 } from 'lucide-react';
+import { Dumbbell, Clock, Play, ChevronRight, CheckCircle2, Flame, Bike, Zap, User } from 'lucide-react';
 import workoutsData from '../../exercices_only.json';
 import { getTodayCompletedWorkouts } from '../services/cloudSync';
 
 const getCategoryIcon = (id) => {
-  if (id.includes('abs')) return '🔥';
-  if (id.includes('arms') || id.includes('dumbbells')) return '💪';
-  if (id.includes('bike')) return '🚴';
-  if (id.includes('fullbody')) return '⚡';
-  if (id.includes('back')) return '🧘';
-  return '🏃';
+  if (id.includes('abs')) return Flame;
+  if (id.includes('arms') || id.includes('dumbbells')) return Dumbbell;
+  if (id.includes('bike')) return Bike;
+  if (id.includes('fullbody')) return Zap;
+  if (id.includes('back')) return User;
+  return User;
 };
 
 const getCategoryColor = (id) => {
@@ -46,8 +46,11 @@ export const Workouts = ({ onStartWorkout }) => {
           </button>
 
           <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white shadow-md flex items-center justify-center">
-            <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${getCategoryColor(selectedWorkout.id)} flex items-center justify-center text-3xl`}>
-              {getCategoryIcon(selectedWorkout.id)}
+            <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${getCategoryColor(selectedWorkout.id)} flex items-center justify-center`}>
+              {(() => {
+                const Icon = getCategoryIcon(selectedWorkout.id);
+                return <Icon className="w-8 h-8 text-white" />;
+              })()}
             </div>
           </div>
 
@@ -132,8 +135,11 @@ export const Workouts = ({ onStartWorkout }) => {
               >
                 <div className="flex items-center gap-4">
                   <div className="w-14 h-14 rounded-full bg-white shadow-sm flex items-center justify-center flex-shrink-0 relative">
-                    <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${getCategoryColor(workout.id)} flex items-center justify-center text-xl`}>
-                      {getCategoryIcon(workout.id)}
+                    <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${getCategoryColor(workout.id)} flex items-center justify-center`}>
+                      {(() => {
+                        const Icon = getCategoryIcon(workout.id);
+                        return <Icon className="w-6 h-6 text-white" />;
+                      })()}
                     </div>
                     {isCompleted && (
                       <div className="absolute -top-1 -right-1 w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center">
