@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Settings as SettingsIcon, Save, Bell, Clock, CalendarClock, Dumbbell } from 'lucide-react';
+import { Settings as SettingsIcon, Save, Bell, Clock, CalendarClock, Dumbbell, Sliders } from 'lucide-react';
 import { getSettings, updateSettings } from '../db/database';
 import { UserIdDisplay } from './UserIdDisplay';
+import { ExerciseCustomization } from './ExerciseCustomization';
 
 export const Settings = ({ onSave }) => {
   const [settings, setSettings] = useState(null);
@@ -113,6 +114,20 @@ export const Settings = ({ onSave }) => {
                 label="Vibration"
                 checked={settings.vibration_enabled}
                 onChange={(checked) => setSettings({ ...settings, vibration_enabled: checked })}
+              />
+            </Section>
+
+            <Section title="Personnalisation des exercices" icon={<Sliders className="w-4 h-4" />}>
+              <ExerciseCustomization
+                preferences={settings.exercise_preferences || {
+                  categories: { abs: true, arms: true, bike: true, fullbody: true, back: true },
+                  disabled_exercises: [],
+                  custom_durations: {}
+                }}
+                onChange={(newPreferences) => setSettings({
+                  ...settings,
+                  exercise_preferences: newPreferences
+                })}
               />
             </Section>
           </div>

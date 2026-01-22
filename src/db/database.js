@@ -23,7 +23,21 @@ export const defaultSettings = {
   rotation: 'rotation_basic',
   notifications_enabled: true,
   sound_enabled: true,
-  vibration_enabled: true
+  vibration_enabled: true,
+  exercise_preferences: {
+    // Catégories d'exercices activées
+    categories: {
+      abs: true,
+      arms: true,
+      bike: true,
+      fullbody: true,
+      back: true
+    },
+    // Exercices spécifiques désactivés (par ID)
+    disabled_exercises: [],
+    // Durées personnalisées par exercice (en secondes)
+    custom_durations: {}
+  }
 };
 
 export const initializeSettings = async () => {
