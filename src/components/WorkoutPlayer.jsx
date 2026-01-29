@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Play, Pause, SkipForward, X, CheckCircle, Clock, Flame, Dumbbell, Bike, Zap, User } from 'lucide-react';
 import { markWorkoutComplete } from '../services/cloudSync';
 import { soundManager } from '../utils/soundManager';
+import { getExerciseImageWithFallback } from '../utils/exerciseImages';
 
 const formatTime = (seconds) => {
   const mins = Math.floor(seconds / 60);
@@ -211,6 +212,16 @@ export const WorkoutPlayer = ({ workout, onExit }) => {
         </div>
 
         <div className="bg-white rounded-2xl p-4 shadow-md mb-4">
+          <div className="mb-4 rounded-xl overflow-hidden bg-gray-50">
+            <img 
+              src={getExerciseImageWithFallback(currentExercise.name)}
+              alt={currentExercise.name}
+              className="w-full h-48 object-contain"
+              onError={(e) => {
+                e.target.style.display = 'none';
+              }}
+            />
+          </div>
           <h3 className="text-lg font-bold text-gray-800 mb-2 text-center">
             {currentExercise.name}
           </h3>
