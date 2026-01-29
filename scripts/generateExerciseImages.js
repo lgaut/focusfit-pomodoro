@@ -36,202 +36,202 @@ const exercises = [
   {
     id: "arm_circles",
     name: "Cercles de bras",
-    prompt: "A clean, minimalist illustration of a fit person doing arm circles exercise. The person is standing upright with arms extended to the sides, making circular motions. Simple, modern style with a light background. Focus on proper form and movement. Fitness illustration style, side view, clear demonstration of the exercise technique."
+    prompt: "Professional fitness instruction diagram: Person standing upright, arms extended horizontally to sides at shoulder height. SHOW: Circular motion arrows around both arms indicating rotation direction. Red dots marking shoulder joints. Side view with clean white background. Athletic figure in simple workout attire. Anatomical accuracy with emphasis on shoulder mobility. Motion lines showing circular path. Educational fitness poster style with clear movement indicators."
   },
   {
     id: "pushups_light",
     name: "Pompes légères",
-    prompt: "A clean, minimalist illustration of a person doing light push-ups on their knees (modified push-up). The person is in proper form with hands shoulder-width apart, body aligned. Simple, modern fitness illustration style with a light background. Side view showing correct technique."
+    prompt: "Professional fitness instruction diagram: Person performing modified push-up on knees. SHOW: Body alignment from knees to head forming straight line (indicated by dotted line). Hands positioned shoulder-width apart (marked with red dots). Downward arrow showing lowering motion. Side view with clean background. Highlight core engagement zone in light blue. Clear form demonstration with proper knee position. Educational fitness illustration."
   },
   {
     id: "plank_light",
     name: "Gainage léger",
-    prompt: "A clean, minimalist illustration of a person in a forearm plank position. The person has a straight body line from head to heels, elbows directly under shoulders, core engaged. Simple, modern fitness illustration style with a light background. Side view showing perfect plank form."
+    prompt: "Professional fitness instruction diagram: Person in forearm plank position. SHOW: Straight body alignment line from head to heels (yellow dotted line). Elbows directly under shoulders (marked with red dots). Core engagement zone highlighted in light blue. Side view. Proper hip position (not sagging or raised). Clear anatomical positioning. Educational fitness poster with form indicators."
   },
   {
     id: "breathing",
     name: "Respiration et mise en place",
-    prompt: "A calm, minimalist illustration of a person sitting in a meditation pose, focusing on deep breathing. The person is relaxed with eyes closed, hands resting on knees. Peaceful atmosphere with soft colors. Simple, modern wellness illustration style."
+    prompt: "Professional wellness instruction diagram: Person sitting cross-legged in meditation pose. SHOW: Hands on chest and belly with breathing arrows (inhale up, exhale down). Relaxed posture with straight spine (indicated by line). Eyes closed. Calm expression. Soft blue/green color palette. Front view. Peaceful atmosphere. Educational breathing technique illustration."
   },
   
   // Bloc Pectoraux
   {
     id: "pushups",
     name: "Pompes",
-    prompt: "A clean, minimalist illustration of a person doing a standard push-up. The person is in perfect form with straight body alignment, hands shoulder-width apart, lowering chest toward the ground. Simple, modern fitness illustration style with a light background. Side view showing proper push-up technique."
+    prompt: "Professional fitness instruction diagram: Person in full push-up position. SHOW: Straight body line from head to heels (yellow dotted line). Hands shoulder-width apart (red dots). Vertical arrows showing up/down movement. Core and chest muscles highlighted in light red. Side view with clean background. Proper elbow angle at 45 degrees. Educational fitness poster with clear form indicators and movement arrows."
   },
   {
     id: "dumbbell_press",
     name: "Développé haltères",
-    prompt: "A clean, minimalist illustration of a person lying on their back doing a dumbbell chest press. The person is holding dumbbells above their chest, arms extended. Simple, modern fitness illustration style with a light background. Side view showing proper form for dumbbell press."
+    prompt: "Professional fitness instruction diagram: Person lying on back performing dumbbell chest press. SHOW: Dumbbells at chest level with upward arrows indicating press motion. Elbow position at 90 degrees (marked). Chest muscles highlighted in light red. Proper wrist alignment (straight line indicated). Side view. Dumbbells clearly visible. Educational strength training illustration with movement indicators."
   },
   {
     id: "dumbbell_fly",
     name: "Écartés haltères",
-    prompt: "A clean, minimalist illustration of a person lying on their back doing dumbbell flyes. The person has arms extended to the sides in a wide arc, holding dumbbells, focusing on chest stretch. Simple, modern fitness illustration style with a light background. Top view showing the fly motion."
+    prompt: "Professional fitness instruction diagram: Person lying on back doing dumbbell flyes. SHOW: Arms extended in wide arc with curved arrows showing opening/closing motion. Slight elbow bend (marked). Chest stretch zone highlighted in light red. Top-down view showing full range of motion. Dumbbells at shoulder level. Educational illustration with clear movement path and muscle engagement zones."
   },
   
   // Bloc Abdominaux
   {
     id: "plank",
     name: "Gainage",
-    prompt: "A clean, minimalist illustration of a person in a perfect forearm plank position. Strong core engagement, straight body line, elbows under shoulders. Simple, modern fitness illustration style with a light background. Side view emphasizing core stability."
+    prompt: "Professional fitness instruction diagram: Person in forearm plank. SHOW: Perfect body alignment line from head to heels (yellow dotted line). Elbows under shoulders (red dots). Core engagement zone highlighted in light blue. Hip position indicator (not sagging). Side view. Breathing reminder icon. Educational core training illustration with anatomical precision and form markers."
   },
   {
     id: "leg_raises",
     name: "Relevés de jambes",
-    prompt: "A clean, minimalist illustration of a person lying on their back doing leg raises. The person has legs extended and raised, lower back pressed to the ground, hands at sides. Simple, modern fitness illustration style with a light background. Side view showing proper leg raise form."
+    prompt: "Professional fitness instruction diagram: Person lying on back performing leg raises. SHOW: Legs extended upward with vertical arrow showing lift motion. Lower back pressed to ground (emphasized with contact indicator). Hands at sides for stability. Lower abs highlighted in light blue. Side view. Leg angle markers (90 degrees). Educational ab exercise illustration with clear movement path."
   },
   {
     id: "crunch",
     name: "Crunch lent",
-    prompt: "A clean, minimalist illustration of a person doing a slow crunch exercise. The person is lying on their back with knees bent, lifting shoulders off the ground in a controlled motion. Simple, modern fitness illustration style with a light background. Side view showing proper crunch technique."
+    prompt: "Professional fitness instruction diagram: Person doing controlled crunch. SHOW: Shoulders lifting off ground with curved arrow showing motion. Knees bent at 90 degrees. Hands behind head (not pulling neck). Upper abs highlighted in light blue. Side view. Small range of motion emphasized. Educational ab exercise with proper form indicators and neck safety reminder."
   },
   
   // Retour au calme
   {
     id: "chest_stretch",
     name: "Étirement pectoraux",
-    prompt: "A clean, minimalist illustration of a person doing a chest stretch against a wall or doorframe. The person has one arm extended back, opening the chest. Simple, modern fitness illustration style with a light background. Side view showing proper stretching form."
+    prompt: "Professional stretching instruction diagram: Person standing sideways to wall/doorframe with arm extended back. SHOW: Chest opening angle (curved arrow). Shoulder position (red dot). Stretch zone highlighted in light green on chest. Side view. Proper stance with feet shoulder-width. Hold time indicator (30-60s). Educational flexibility illustration with stretch intensity zones."
   },
   {
     id: "breathing_relax",
     name: "Respiration profonde",
-    prompt: "A calm, minimalist illustration of a person in a relaxed standing position doing deep breathing. The person has eyes closed, hands on chest/belly, focusing on breath. Peaceful atmosphere with soft colors. Simple, modern wellness illustration style."
+    prompt: "Professional wellness instruction diagram: Person standing relaxed with eyes closed. SHOW: One hand on chest, one on belly. Breathing flow arrows (inhale through nose - blue, exhale through mouth - green). Diaphragm movement indicator. Calm posture with relaxed shoulders. Front view. Soft calming colors. Educational breathing technique with clear airflow visualization."
   },
   
   // Exercices de repos
   {
     id: "rest",
     name: "Repos",
-    prompt: "A calm, minimalist illustration representing rest and recovery. A person in a relaxed standing or sitting position, breathing calmly. Soft colors, peaceful atmosphere. Simple, modern wellness illustration style emphasizing recovery and rest."
+    prompt: "Professional recovery instruction diagram: Person in comfortable standing rest position. SHOW: Relaxed posture with hands on hips or at sides. Breathing rhythm indicator (slow, steady). Recovery timer icon. Calm expression. Soft blue/green palette. Front view. Educational rest period illustration emphasizing active recovery and breathing."
   },
   
   // Exercices abdominaux supplémentaires
   {
     id: "side_plank_left",
     name: "Planche latérale gauche",
-    prompt: "A clean, minimalist illustration of a person in a left side plank position. The person is balanced on their left forearm and side of left foot, body forming a straight line. Simple, modern fitness illustration style with a light background. Side view showing proper form."
+    prompt: "Professional fitness instruction diagram: Person in left side plank. SHOW: Straight body alignment from head to feet (yellow dotted line). Left elbow under shoulder (red dot). Hips lifted (not sagging). Oblique muscles highlighted in light blue on left side. Front-angled view. Stacked feet position. Educational core exercise with clear alignment markers and muscle engagement zones."
   },
   {
     id: "side_plank_right",
     name: "Planche latérale droite",
-    prompt: "A clean, minimalist illustration of a person in a right side plank position. The person is balanced on their right forearm and side of right foot, body forming a straight line. Simple, modern fitness illustration style with a light background. Side view showing proper form."
+    prompt: "Professional fitness instruction diagram: Person in right side plank. SHOW: Straight body alignment from head to feet (yellow dotted line). Right elbow under shoulder (red dot). Hips lifted (not sagging). Oblique muscles highlighted in light blue on right side. Front-angled view. Stacked feet position. Educational core exercise with clear alignment markers and muscle engagement zones."
   },
   {
     id: "pelvic_tilt",
     name: "Relevé de bassin",
-    prompt: "A clean, minimalist illustration of a person doing pelvic tilts. The person is lying on their back with knees bent, lifting the pelvis slightly off the ground, engaging lower abs. Simple, modern fitness illustration style with a light background. Side view showing the movement."
+    prompt: "Professional fitness instruction diagram: Person lying on back doing pelvic tilt. SHOW: Knees bent at 90 degrees. Pelvis lifting with upward curved arrow. Lower abs engagement zone highlighted in light blue. Lower back contact with ground emphasized. Side view. Small controlled movement indicator. Educational lower ab exercise with movement path and engagement zones."
   },
   {
     id: "bicycle_crunches",
     name: "Vélo au sol",
-    prompt: "A clean, minimalist illustration of a person doing bicycle crunches. The person is lying on their back, alternating bringing opposite elbow to knee in a cycling motion. Simple, modern fitness illustration style with a light background. Side view showing the exercise."
+    prompt: "Professional fitness instruction diagram: Person doing bicycle crunches. SHOW: Alternating elbow-to-opposite-knee motion with curved crossing arrows. Rotation indicators. Obliques highlighted in light blue. Legs in cycling motion (one extended, one bent). Angled view showing full rotation. Educational ab exercise with clear movement pattern and muscle engagement."
   },
   {
     id: "mountain_climbers",
     name: "Montées de genoux rapides",
-    prompt: "A clean, minimalist illustration of a person doing mountain climbers. The person is in a plank position, alternating bringing knees toward chest rapidly. Simple, modern fitness illustration style with a light background. Side view showing dynamic movement."
+    prompt: "Professional fitness instruction diagram: Person in plank doing mountain climbers. SHOW: Alternating knee-to-chest motion with forward arrows. Plank position maintained (body alignment line). Core engagement highlighted. Dynamic movement indicators (speed lines). Side view. Proper hand position (red dots). Educational cardio-core exercise with movement pattern."
   },
   {
     id: "hollow_hold",
     name: "Gainage sur le dos",
-    prompt: "A clean, minimalist illustration of a person doing a hollow body hold. The person is lying on their back with legs and shoulders slightly raised, core engaged, lower back pressed to ground. Simple, modern fitness illustration style with a light background. Side view."
+    prompt: "Professional fitness instruction diagram: Person in hollow body hold. SHOW: Legs and shoulders raised off ground. Lower back pressed flat (contact indicator). Core engagement zone highlighted in light blue. Arms extended overhead. Side view. Body curve emphasized (C-shape). Educational advanced core exercise with proper form markers."
   },
   {
     id: "oblique_crunches",
     name: "Crunch + rotation",
-    prompt: "A clean, minimalist illustration of a person doing oblique crunches with rotation. The person is doing a crunch while rotating torso to engage obliques. Simple, modern fitness illustration style with a light background. Angled view showing the rotation."
+    prompt: "Professional fitness instruction diagram: Person doing oblique crunch with rotation. SHOW: Shoulder rotating toward opposite knee with curved arrow. Oblique muscles highlighted in light blue. Controlled twist motion. Hands behind head (not pulling). Angled view showing rotation. Educational oblique exercise with movement path and muscle engagement."
   },
   
   // Exercices bras et épaules
   {
     id: "bicep_curls",
     name: "Curl biceps",
-    prompt: "A clean, minimalist illustration of a person doing bicep curls with dumbbells. The person is standing upright, curling dumbbells toward shoulders with controlled form. Simple, modern fitness illustration style with a light background. Front view showing proper technique."
+    prompt: "Professional strength training diagram: Person standing doing bicep curls. SHOW: Dumbbells at sides with upward curved arrows showing curl motion. Elbow position fixed at sides (red dots). Biceps highlighted in light red. Controlled movement path. Front view. Proper posture with core engaged. Educational arm exercise with clear movement arc and muscle engagement."
   },
   {
     id: "overhead_triceps",
     name: "Triceps au-dessus de la tête",
-    prompt: "A clean, minimalist illustration of a person doing overhead triceps extension. The person holds a dumbbell overhead with both hands, lowering it behind the head. Simple, modern fitness illustration style with a light background. Side view showing the movement."
+    prompt: "Professional strength training diagram: Person doing overhead triceps extension. SHOW: Dumbbell held overhead with both hands. Downward arrow showing lowering behind head. Elbow position (pointing up, not flaring). Triceps highlighted in light red. Side view. Controlled range of motion indicators. Educational arm exercise with proper elbow alignment."
   },
   {
     id: "shoulder_press",
     name: "Développé épaules",
-    prompt: "A clean, minimalist illustration of a person doing shoulder press with dumbbells. The person is pressing dumbbells overhead from shoulder height. Simple, modern fitness illustration style with a light background. Front view showing proper form."
+    prompt: "Professional strength training diagram: Person doing shoulder press. SHOW: Dumbbells at shoulder height with upward arrows showing press motion. Shoulder muscles highlighted in light orange. Proper wrist alignment (straight). Core engaged. Front view. Full range of motion indicators (shoulder to overhead). Educational shoulder exercise with movement path."
   },
   {
     id: "dumbbell_rows",
     name: "Rowing haltère",
-    prompt: "A clean, minimalist illustration of a person doing dumbbell rows. The person is bent forward at hips, pulling dumbbells toward torso, squeezing shoulder blades. Simple, modern fitness illustration style with a light background. Side view showing back engagement."
+    prompt: "Professional strength training diagram: Person bent forward doing dumbbell rows. SHOW: Dumbbells pulling toward torso with upward arrows. Shoulder blade squeeze indicator (back muscles highlighted in light blue). Flat back position (spine alignment line). Side view. Elbow path close to body. Educational back exercise with proper form markers."
   },
   {
     id: "hammer_curls",
     name: "Curl marteau",
-    prompt: "A clean, minimalist illustration of a person doing hammer curls with dumbbells. The person holds dumbbells with palms facing each other, curling upward. Simple, modern fitness illustration style with a light background. Front view showing neutral grip."
+    prompt: "Professional strength training diagram: Person doing hammer curls. SHOW: Dumbbells with neutral grip (palms facing each other). Upward curved arrows showing curl motion. Biceps and forearms highlighted in light red. Elbows at sides (red dots). Front view. Grip position emphasized. Educational arm exercise with neutral grip demonstration."
   },
   {
     id: "lateral_raises",
     name: "Élévations latérales",
-    prompt: "A clean, minimalist illustration of a person doing lateral raises with dumbbells. The person lifts arms out to the sides to shoulder height. Simple, modern fitness illustration style with a light background. Front view showing the movement."
+    prompt: "Professional strength training diagram: Person doing lateral raises. SHOW: Arms lifting out to sides with curved upward arrows. Shoulder muscles highlighted in light orange. Slight elbow bend maintained. Arms reaching shoulder height (horizontal line indicator). Front view. Controlled movement path. Educational shoulder exercise with proper form markers."
   },
   
   // Exercices cardio
   {
     id: "cycling",
     name: "Vélo",
-    prompt: "A clean, minimalist illustration of a person on a stationary bike. The person is cycling with proper posture, hands on handlebars. Simple, modern fitness illustration style with a light background. Side view showing cycling position."
+    prompt: "Professional cardio instruction diagram: Person on stationary bike. SHOW: Proper posture with slight forward lean. Knee angle at bottom of pedal stroke (25-35 degrees marked). Hands on handlebars. Pedaling motion with circular arrows. Leg muscles highlighted in light orange. Side view. Seat height indicator. Educational cycling form with biomechanical markers."
   },
   
   // Exercices jambes et full body
   {
     id: "squats",
     name: "Squats",
-    prompt: "A clean, minimalist illustration of a person doing a bodyweight squat. The person is squatting down with proper form, chest up, knees tracking over toes. Simple, modern fitness illustration style with a light background. Side view showing squat depth."
+    prompt: "Professional strength training diagram: Person doing bodyweight squat. SHOW: Downward arrow showing squat motion. Knees tracking over toes (alignment lines). Hip depth indicator (parallel to ground). Chest up, back straight (spine line). Leg muscles highlighted in light orange. Side view. Weight on heels emphasized. Educational leg exercise with proper form markers."
   },
   {
     id: "lunges",
     name: "Fentes alternées",
-    prompt: "A clean, minimalist illustration of a person doing alternating lunges. The person steps forward into a lunge position with front knee bent at 90 degrees. Simple, modern fitness illustration style with a light background. Side view showing proper lunge form."
+    prompt: "Professional strength training diagram: Person in lunge position. SHOW: Front knee at 90 degrees (angle marked). Back knee hovering above ground. Forward step arrow. Vertical torso alignment (dotted line). Leg muscles highlighted in light orange. Side view. Weight distribution indicator. Educational lunge exercise with proper form markers."
   },
   {
     id: "glute_bridge",
     name: "Pont fessier",
-    prompt: "A clean, minimalist illustration of a person doing a glute bridge. The person is lying on their back with knees bent, lifting hips up while squeezing glutes. Simple, modern fitness illustration style with a light background. Side view showing hip extension."
+    prompt: "Professional strength training diagram: Person doing glute bridge. SHOW: Hips lifting with upward arrow. Knees bent at 90 degrees. Glutes and hamstrings highlighted in light orange. Shoulder-to-knee alignment line. Squeeze indicator at top. Side view. Feet flat on ground. Educational glute exercise with movement path and muscle engagement."
   },
   {
     id: "jumping_jacks",
     name: "Jumping jacks",
-    prompt: "A clean, minimalist illustration of a person doing jumping jacks. The person is jumping with arms and legs spreading out. Simple, modern fitness illustration style with a light background. Front view showing the dynamic movement."
+    prompt: "Professional cardio instruction diagram: Person doing jumping jacks. SHOW: Arms and legs spreading with outward arrows. Two positions shown (closed and open). Dynamic movement lines. Cardiovascular intensity indicator. Front view. Landing position (soft knees). Educational cardio exercise with clear movement pattern."
   },
   {
     id: "high_knees",
     name: "Marche rapide sur place",
-    prompt: "A clean, minimalist illustration of a person doing high knees or marching in place. The person is lifting knees high while moving arms in a running motion. Simple, modern fitness illustration style with a light background. Side view showing the movement."
+    prompt: "Professional cardio instruction diagram: Person doing high knees. SHOW: Knee lifting to hip height with upward arrow. Alternating leg motion indicators. Arms pumping (running motion arrows). Core engagement highlighted. Side view. Tempo indicator (fast pace). Educational cardio exercise with movement rhythm and form markers."
   },
   
   // Exercices dos et posture
   {
     id: "superman",
     name: "Superman",
-    prompt: "A clean, minimalist illustration of a person doing the superman exercise. The person is lying face down, lifting arms and legs off the ground simultaneously. Simple, modern fitness illustration style with a light background. Side view showing back extension."
+    prompt: "Professional back training diagram: Person lying face down doing superman. SHOW: Arms and legs lifting simultaneously with upward arrows. Back muscles highlighted in light blue. Neck neutral position (alignment indicator). Small controlled lift emphasized. Side view. Hold time indicator (2-5 seconds). Educational back extension exercise with proper form markers."
   },
   {
     id: "bird_dog",
     name: "Oiseau-chien",
-    prompt: "A clean, minimalist illustration of a person doing the bird dog exercise. The person is on hands and knees, extending opposite arm and leg while maintaining balance. Simple, modern fitness illustration style with a light background. Side view showing the position."
+    prompt: "Professional core stability diagram: Person on hands and knees doing bird dog. SHOW: Opposite arm and leg extended (indicated by arrows). Body alignment line (horizontal from hand to foot). Core engagement highlighted in light blue. Balance indicators. Side view. Neutral spine position. Educational stability exercise with clear extension pattern."
   },
   
   // Étirements
   {
     id: "back_stretch",
     name: "Étirements dos/hanches",
-    prompt: "A calm, minimalist illustration of a person doing back and hip stretches. The person is in a gentle stretching position, focusing on lower back and hip flexibility. Peaceful atmosphere with soft colors. Simple, modern wellness illustration style."
+    prompt: "Professional stretching instruction diagram: Person in seated forward fold or child's pose. SHOW: Stretch zones highlighted in light green (lower back and hips). Breathing indicator (slow, deep). Relaxation cues. Gentle stretch emphasis (no pain). Side view. Hold time indicator (30-60s). Educational flexibility exercise with stretch intensity zones."
   },
   {
     id: "cooldown",
     name: "Retour au calme",
-    prompt: "A calm, minimalist illustration of a person in a cooldown position. The person is standing or walking slowly, breathing deeply, relaxed posture. Peaceful atmosphere with soft colors. Simple, modern wellness illustration style emphasizing recovery."
+    prompt: "Professional recovery instruction diagram: Person walking slowly or standing with relaxed posture. SHOW: Slow movement indicator (walking pace arrow). Breathing rhythm (calm, steady). Heart rate降 indicator. Relaxed shoulders and arms. Side view. Soft calming colors. Educational cooldown phase with recovery markers and breathing cues."
   }
 ];
 
