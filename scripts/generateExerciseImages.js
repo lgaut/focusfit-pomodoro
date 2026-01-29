@@ -105,6 +105,133 @@ const exercises = [
     id: "rest",
     name: "Repos",
     prompt: "A calm, minimalist illustration representing rest and recovery. A person in a relaxed standing or sitting position, breathing calmly. Soft colors, peaceful atmosphere. Simple, modern wellness illustration style emphasizing recovery and rest."
+  },
+  
+  // Exercices abdominaux supplémentaires
+  {
+    id: "side_plank_left",
+    name: "Planche latérale gauche",
+    prompt: "A clean, minimalist illustration of a person in a left side plank position. The person is balanced on their left forearm and side of left foot, body forming a straight line. Simple, modern fitness illustration style with a light background. Side view showing proper form."
+  },
+  {
+    id: "side_plank_right",
+    name: "Planche latérale droite",
+    prompt: "A clean, minimalist illustration of a person in a right side plank position. The person is balanced on their right forearm and side of right foot, body forming a straight line. Simple, modern fitness illustration style with a light background. Side view showing proper form."
+  },
+  {
+    id: "pelvic_tilt",
+    name: "Relevé de bassin",
+    prompt: "A clean, minimalist illustration of a person doing pelvic tilts. The person is lying on their back with knees bent, lifting the pelvis slightly off the ground, engaging lower abs. Simple, modern fitness illustration style with a light background. Side view showing the movement."
+  },
+  {
+    id: "bicycle_crunches",
+    name: "Vélo au sol",
+    prompt: "A clean, minimalist illustration of a person doing bicycle crunches. The person is lying on their back, alternating bringing opposite elbow to knee in a cycling motion. Simple, modern fitness illustration style with a light background. Side view showing the exercise."
+  },
+  {
+    id: "mountain_climbers",
+    name: "Montées de genoux rapides",
+    prompt: "A clean, minimalist illustration of a person doing mountain climbers. The person is in a plank position, alternating bringing knees toward chest rapidly. Simple, modern fitness illustration style with a light background. Side view showing dynamic movement."
+  },
+  {
+    id: "hollow_hold",
+    name: "Gainage sur le dos",
+    prompt: "A clean, minimalist illustration of a person doing a hollow body hold. The person is lying on their back with legs and shoulders slightly raised, core engaged, lower back pressed to ground. Simple, modern fitness illustration style with a light background. Side view."
+  },
+  {
+    id: "oblique_crunches",
+    name: "Crunch + rotation",
+    prompt: "A clean, minimalist illustration of a person doing oblique crunches with rotation. The person is doing a crunch while rotating torso to engage obliques. Simple, modern fitness illustration style with a light background. Angled view showing the rotation."
+  },
+  
+  // Exercices bras et épaules
+  {
+    id: "bicep_curls",
+    name: "Curl biceps",
+    prompt: "A clean, minimalist illustration of a person doing bicep curls with dumbbells. The person is standing upright, curling dumbbells toward shoulders with controlled form. Simple, modern fitness illustration style with a light background. Front view showing proper technique."
+  },
+  {
+    id: "overhead_triceps",
+    name: "Triceps au-dessus de la tête",
+    prompt: "A clean, minimalist illustration of a person doing overhead triceps extension. The person holds a dumbbell overhead with both hands, lowering it behind the head. Simple, modern fitness illustration style with a light background. Side view showing the movement."
+  },
+  {
+    id: "shoulder_press",
+    name: "Développé épaules",
+    prompt: "A clean, minimalist illustration of a person doing shoulder press with dumbbells. The person is pressing dumbbells overhead from shoulder height. Simple, modern fitness illustration style with a light background. Front view showing proper form."
+  },
+  {
+    id: "dumbbell_rows",
+    name: "Rowing haltère",
+    prompt: "A clean, minimalist illustration of a person doing dumbbell rows. The person is bent forward at hips, pulling dumbbells toward torso, squeezing shoulder blades. Simple, modern fitness illustration style with a light background. Side view showing back engagement."
+  },
+  {
+    id: "hammer_curls",
+    name: "Curl marteau",
+    prompt: "A clean, minimalist illustration of a person doing hammer curls with dumbbells. The person holds dumbbells with palms facing each other, curling upward. Simple, modern fitness illustration style with a light background. Front view showing neutral grip."
+  },
+  {
+    id: "lateral_raises",
+    name: "Élévations latérales",
+    prompt: "A clean, minimalist illustration of a person doing lateral raises with dumbbells. The person lifts arms out to the sides to shoulder height. Simple, modern fitness illustration style with a light background. Front view showing the movement."
+  },
+  
+  // Exercices cardio
+  {
+    id: "cycling",
+    name: "Vélo",
+    prompt: "A clean, minimalist illustration of a person on a stationary bike. The person is cycling with proper posture, hands on handlebars. Simple, modern fitness illustration style with a light background. Side view showing cycling position."
+  },
+  
+  // Exercices jambes et full body
+  {
+    id: "squats",
+    name: "Squats",
+    prompt: "A clean, minimalist illustration of a person doing a bodyweight squat. The person is squatting down with proper form, chest up, knees tracking over toes. Simple, modern fitness illustration style with a light background. Side view showing squat depth."
+  },
+  {
+    id: "lunges",
+    name: "Fentes alternées",
+    prompt: "A clean, minimalist illustration of a person doing alternating lunges. The person steps forward into a lunge position with front knee bent at 90 degrees. Simple, modern fitness illustration style with a light background. Side view showing proper lunge form."
+  },
+  {
+    id: "glute_bridge",
+    name: "Pont fessier",
+    prompt: "A clean, minimalist illustration of a person doing a glute bridge. The person is lying on their back with knees bent, lifting hips up while squeezing glutes. Simple, modern fitness illustration style with a light background. Side view showing hip extension."
+  },
+  {
+    id: "jumping_jacks",
+    name: "Jumping jacks",
+    prompt: "A clean, minimalist illustration of a person doing jumping jacks. The person is jumping with arms and legs spreading out. Simple, modern fitness illustration style with a light background. Front view showing the dynamic movement."
+  },
+  {
+    id: "high_knees",
+    name: "Marche rapide sur place",
+    prompt: "A clean, minimalist illustration of a person doing high knees or marching in place. The person is lifting knees high while moving arms in a running motion. Simple, modern fitness illustration style with a light background. Side view showing the movement."
+  },
+  
+  // Exercices dos et posture
+  {
+    id: "superman",
+    name: "Superman",
+    prompt: "A clean, minimalist illustration of a person doing the superman exercise. The person is lying face down, lifting arms and legs off the ground simultaneously. Simple, modern fitness illustration style with a light background. Side view showing back extension."
+  },
+  {
+    id: "bird_dog",
+    name: "Oiseau-chien",
+    prompt: "A clean, minimalist illustration of a person doing the bird dog exercise. The person is on hands and knees, extending opposite arm and leg while maintaining balance. Simple, modern fitness illustration style with a light background. Side view showing the position."
+  },
+  
+  // Étirements
+  {
+    id: "back_stretch",
+    name: "Étirements dos/hanches",
+    prompt: "A calm, minimalist illustration of a person doing back and hip stretches. The person is in a gentle stretching position, focusing on lower back and hip flexibility. Peaceful atmosphere with soft colors. Simple, modern wellness illustration style."
+  },
+  {
+    id: "cooldown",
+    name: "Retour au calme",
+    prompt: "A calm, minimalist illustration of a person in a cooldown position. The person is standing or walking slowly, breathing deeply, relaxed posture. Peaceful atmosphere with soft colors. Simple, modern wellness illustration style emphasizing recovery."
   }
 ];
 

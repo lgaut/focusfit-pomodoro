@@ -63,6 +63,49 @@ export const exerciseImageMap = {
   // Repos
   'rest': '/exercise-images/rest.png',
   'repos': '/exercise-images/rest.png',
+  
+  // Abdominaux supplémentaires
+  'planche latérale gauche': '/exercise-images/side_plank_left.png',
+  'planche latérale droite': '/exercise-images/side_plank_right.png',
+  'relevé de bassin': '/exercise-images/pelvic_tilt.png',
+  'vélo au sol': '/exercise-images/bicycle_crunches.png',
+  'montées de genoux rapides': '/exercise-images/mountain_climbers.png',
+  'gainage sur le dos': '/exercise-images/hollow_hold.png',
+  'crunch + rotation': '/exercise-images/oblique_crunches.png',
+  'planche (finisher)': '/exercise-images/plank.png',
+  
+  // Bras et épaules
+  'curl biceps': '/exercise-images/bicep_curls.png',
+  'curl biceps (lent)': '/exercise-images/bicep_curls.png',
+  'triceps au-dessus de la tête': '/exercise-images/overhead_triceps.png',
+  'triceps (petites reps propres)': '/exercise-images/overhead_triceps.png',
+  'développé épaules': '/exercise-images/shoulder_press.png',
+  'rowing haltère': '/exercise-images/dumbbell_rows.png',
+  'rowing haltère (dos)': '/exercise-images/dumbbell_rows.png',
+  'curl marteau': '/exercise-images/hammer_curls.png',
+  'élévations latérales': '/exercise-images/lateral_raises.png',
+  
+  // Cardio
+  'vélo (échauffement)': '/exercise-images/cycling.png',
+  'vélo (rythme moyen)': '/exercise-images/cycling.png',
+  'vélo (récup)': '/exercise-images/cycling.png',
+  'vélo (soutenu)': '/exercise-images/cycling.png',
+  'vélo (retour au calme)': '/exercise-images/cycling.png',
+  
+  // Jambes et full body
+  'squats': '/exercise-images/squats.png',
+  'fentes alternées': '/exercise-images/lunges.png',
+  'pont fessier': '/exercise-images/glute_bridge.png',
+  'jumping jacks': '/exercise-images/jumping_jacks.png',
+  'marche rapide sur place': '/exercise-images/high_knees.png',
+  
+  // Dos et posture
+  'superman': '/exercise-images/superman.png',
+  'oiseau-chien (bird dog)': '/exercise-images/bird_dog.png',
+  
+  // Étirements et cooldown
+  'étirements dos/hanches': '/exercise-images/back_stretch.png',
+  'retour au calme': '/exercise-images/cooldown.png',
 };
 
 /**
