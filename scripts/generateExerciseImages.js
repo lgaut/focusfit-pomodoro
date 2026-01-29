@@ -2,9 +2,13 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// Charger les variables d'environnement depuis .env
+dotenv.config();
 
 // Configuration
 const API_KEY = process.env.GEMINI_API_KEY;
@@ -15,7 +19,7 @@ if (!API_KEY) {
 }
 
 const genAI = new GoogleGenerativeAI(API_KEY);
-const model = genAI.getGenerativeModel({ model: "imagen-3.0-generate-001" });
+const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash-image" });
 
 // Dossier de sortie pour les images
 const OUTPUT_DIR = path.join(__dirname, "..", "public", "exercise-images");
