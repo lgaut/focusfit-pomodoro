@@ -1,0 +1,130 @@
+{
+  "program": {
+    "id": "pecs_abdos_20min",
+    "label": "Pecs & Abdos – 20 min",
+    "objective": ["prise_de_masse", "pecs_visibles", "abdos_visibles"],
+    "duration_minutes": 20,
+    "frequency_per_week": [4, 5],
+    "equipment": ["haltères", "poids_du_corps"],
+    "profile_target": {
+      "height_cm": 182,
+      "weight_kg": 65,
+      "level": "debutant_intermediaire"
+    },
+    "structure": [
+      {
+        "block": "warmup",
+        "label": "Échauffement",
+        "duration_minutes": 3,
+        "exercises": [
+          {
+            "id": "arm_circles",
+            "name": "Cercles de bras",
+            "duration_seconds": 30
+          },
+          {
+            "id": "pushups_light",
+            "name": "Pompes légères",
+            "duration_seconds": 30
+          },
+          {
+            "id": "plank_light",
+            "name": "Gainage léger",
+            "duration_seconds": 30
+          },
+          {
+            "id": "breathing",
+            "name": "Respiration et mise en place",
+            "duration_seconds": 30
+          }
+        ]
+      },
+      {
+        "block": "chest",
+        "label": "Bloc Pectoraux",
+        "duration_minutes": 10,
+        "exercises": [
+          {
+            "id": "pushups",
+            "name": "Pompes",
+            "sets": 3,
+            "reps": [8, 15],
+            "rest_seconds": 45,
+            "notes": "Sur genoux si trop difficile, pieds surélevés si trop facile"
+          },
+          {
+            "id": "dumbbell_press",
+            "name": "Développé haltères (au sol ou banc)",
+            "sets": 3,
+            "reps": [8, 12],
+            "rest_seconds": 45,
+            "tempo": "descente_lente"
+          },
+          {
+            "id": "dumbbell_fly",
+            "name": "Écartés haltères",
+            "sets": 2,
+            "reps": [12, 15],
+            "rest_seconds": 30,
+            "focus": "etirement"
+          }
+        ]
+      },
+      {
+        "block": "abs",
+        "label": "Bloc Abdominaux",
+        "duration_minutes": 7,
+        "exercises": [
+          {
+            "id": "plank",
+            "name": "Gainage",
+            "sets": 3,
+            "duration_seconds": [30, 45],
+            "rest_seconds": 30
+          },
+          {
+            "id": "leg_raises",
+            "name": "Relevés de jambes",
+            "sets": 3,
+            "reps": [10, 15],
+            "rest_seconds": 30
+          },
+          {
+            "id": "crunch",
+            "name": "Crunch lent",
+            "sets": 2,
+            "reps": 15,
+            "tempo": "lent",
+            "rest_seconds": 30
+          }
+        ]
+      },
+      {
+        "block": "cooldown",
+        "label": "Retour au calme",
+        "duration_minutes": 2,
+        "exercises": [
+          {
+            "id": "chest_stretch",
+            "name": "Étirement pectoraux",
+            "duration_seconds": 60
+          },
+          {
+            "id": "breathing_relax",
+            "name": "Respiration profonde",
+            "duration_seconds": 60
+          }
+        ]
+      }
+    ],
+    "progression_rules": {
+      "increase_weight": "quand_reps_faciles",
+      "increase_reps": "+1_par_serie_si_charge_fixe",
+      "tracking": ["charge", "repetitions"]
+    },
+    "nutrition_hint": {
+      "post_workout": ["repas_proteine", "banane", "yaourt"],
+      "protein_target_per_day_g": [90, 110]
+    }
+  }
+}

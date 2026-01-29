@@ -4,6 +4,7 @@ import workoutsData from '../../exercices_only.json';
 import { getTodayCompletedWorkouts } from '../services/cloudSync';
 
 const getCategoryIcon = (id) => {
+  if (id.includes('pecs') || id.includes('target')) return Dumbbell;
   if (id.includes('abs')) return Flame;
   if (id.includes('arms') || id.includes('dumbbells')) return Dumbbell;
   if (id.includes('bike')) return Bike;
@@ -13,6 +14,7 @@ const getCategoryIcon = (id) => {
 };
 
 const getCategoryColor = (id) => {
+  if (id.includes('pecs') || id.includes('target')) return 'from-red-500 to-orange-500';
   if (id.includes('abs')) return 'from-purple-500 to-pink-500';
   if (id.includes('arms') || id.includes('dumbbells')) return 'from-orange-500 to-red-500';
   if (id.includes('bike')) return 'from-blue-500 to-cyan-500';
