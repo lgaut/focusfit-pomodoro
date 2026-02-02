@@ -3,7 +3,7 @@ export const exercises = [
     id: "bike_easy",
     category: "bike",
     name: "Vélo (cool)",
-    instructions: "Pédale tranquillement, respiration stable, pas d'essoufflement.",
+    instructions: "Pédale tranquillement à ~15-18 km/h, respiration stable, pas d'essoufflement.",
     duration_seconds_default: 300,
     level: "easy"
   },
@@ -11,7 +11,7 @@ export const exercises = [
     id: "bike_medium",
     category: "bike",
     name: "Vélo (rythme moyen)",
-    instructions: "Pédale à rythme régulier, tu transpires un peu mais tu tiens.",
+    instructions: "Pédale à rythme régulier (~20-25 km/h), tu transpires un peu mais tu tiens.",
     duration_seconds_default: 300,
     level: "normal"
   },
